@@ -70,9 +70,23 @@ detalhado sobre o porque qual beneficio
 
 # automation
 
+### objetyivo
+
 - identificacao de padroes e criacao de skills para codex
 - configuracao de jira e metricas
 - server mcp global para criacao chamar db etc
+
+# folders
+
+systeamd /
+rodar units local
+new.service
+
+# scripts
+
+symlink dos .service pro systemd --user
+/scripts
+install-service.sh
 
 # .env
 
@@ -120,12 +134,30 @@ Wa`tedBy=timers.target
 
 # Diretrizes de Contribuição & Workflow
 
-## 1.
+## 1. adicionar backlog
 
-# automation strtucture
+nessa fase eu vou observar o readme criado e ir adicinando de acordo com o reamde
+
+1. nome
+2. descricao
+
+- objetivo principal
+- tempo
+- skills ide utilizado
+
+3. subtarefas do que sera feito
+4. configuracoes do desenvolvimento
+
+- branch
+- commit
+
+5. automacao para o jira se fizer sentido
+
+# automation strtucture folder
 
 - README.md
 - main.py
+- strtcutre
 
 # automation readme.md
 
@@ -139,3 +171,4 @@ Wa`tedBy=timers.target
 - logs e observialidade
 - utilizacao de componentes globais
 - configuracoes jira
+- install.sh nos scripts para automacao do template
