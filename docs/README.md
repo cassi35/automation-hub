@@ -138,3 +138,4 @@ Wa`tedBy=timers.target
 - mermeid fluxo
 - logs e observialidade
 - utilizacao de componentes globais
+- configuracoes jira
