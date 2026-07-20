@@ -9,7 +9,8 @@ e bem documentados
 # rules
 
 - **init**.py para facilitacao dos imports
--
+- replace strtucutre with automation
+- tests in every automation
 
 # global share
 
@@ -26,7 +27,6 @@ e bem documentados
 - congig
 - env.py
 - shared
--
 - packges
 - aqui seram as automocoes
 
@@ -117,3 +117,24 @@ Persistent=true
 [Install]
 Wa`tedBy=timers.target
 ```
+
+# Diretrizes de Contribuição & Workflow
+
+## 1.
+
+# automation strtucture
+
+- README.md
+- main.py
+
+# automation readme.md
+
+> aqui é a parte aonde vou falar da estrtura principal padrao para todas as automocoes
+
+- titulo
+- descricao objetivo principal
+- dados de entrada
+- utilizacao github actions , ou syseamd
+- mermeid fluxo
+- logs e observialidade
+- utilizacao de componentes globais
