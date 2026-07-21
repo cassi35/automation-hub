@@ -6,6 +6,12 @@ o sistema se comporta como se fosse a orgaizacao,
 focamdno em automcocoes com performance , codigos limpos
 e bem documentados
 
+# idea geral
+
+Cada automação declara os próprios metadados no código (nome, descrição, tipo de gatilho) — isso é estático, não muda a cada execução.
+Um comando de sync lê essas declarações de todos os pacotes e sincroniza (upsert) com o banco.
+Quando a automação executa de fato (uv run python.py), ela só grava o histórico de execução (começou, terminou, sucesso/falha) — não recadastra ela mesma.
+
 # rules
 
 - **init**.py para facilitacao dos imports
@@ -172,3 +178,20 @@ nessa fase eu vou observar o readme criado e ir adicinando de acordo com o reamd
 - utilizacao de componentes globais
 - configuracoes jira
 - install.sh nos scripts para automacao do template
+
+# packges / shared
+
+orchestrator/services/ → lógica do control plane (pause/resume/list automations). Só o orchestrator usa.
+packages/shared/ → lógica de negócio compartilhada entre automações (ex: ExecutionTracker, um NotionClient, um TextSummarizer). Cada automação faz uv add shared --package news-scraper pra importar.
+
+# .env
+
+aqui seram meus enviroments que vou usar para o projeto
+
+- JIRA_TKOEN
+- MICROSOFT_GRAPH
+
+# init project
+
+1. chmod +x scrpts/init/install.sh
+2. scrpts/init/install.sh
