@@ -1,0 +1,15 @@
+# Arquivos de ambiente
+.env
+.env.local
+.env.*.local
+
+# Dependências
+node_modules/
+vendor/
+
+# Logs
+*.log
+
+# Sistema
+.DS_Store
+Thumbs.db
