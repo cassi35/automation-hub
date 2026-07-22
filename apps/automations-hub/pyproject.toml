@@ -1,5 +1,5 @@
 [project]
-name = "organize-tasks"
+name = "automations-hub"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
@@ -7,21 +7,18 @@ authors = [
     { name = "cassi35", email = "cgrsobral@gmail.com" }
 ]
 requires-python = ">=3.14"
-dependencies = []
+dependencies = [
+    "fastapi>=0.139.2",
+    "feedparser>=6.0.12",
+    "prompt-toolkit>=3.0.52",
+    "pytest>=9.1.1",
+    "python-dotenv>=1.2.2",
+    "sqlalchemy>=2.0.51",
+]
 
 [project.scripts]
-organize-tasks = "organize_tasks:main"
+automations-hub = "automations_hub:main"
 
 [build-system]
 requires = ["uv_build>=0.11.28,<0.12.0"]
 build-backend = "uv_build"
-
-[tool.uv.workspace]
-members = ["apps/*", "packages/*"]
-
-[dependency-groups]
-dev = [
-    "pytest>=9.1.1",
-    "ruff>=0.15.22",
-]
-

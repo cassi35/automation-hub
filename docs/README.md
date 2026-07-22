@@ -36,6 +36,10 @@ Quando a automação executa de fato (uv run python.py), ela só grava o histór
 - packges
 - aqui seram as automocoes
 
+# shared
+
+pasta shared aqui que vira a ponte global para automacoes
+
 ## exemplo
 
 - new-scrapper

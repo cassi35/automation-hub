@@ -1,5 +1,4 @@
 #!/bin/bash
-mkdir apps 
 echo "instaling frontend"
 chmod +x scripts/init/frontend.sh
 echo "instaling frontend"

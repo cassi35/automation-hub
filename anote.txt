@@ -1,0 +1,13 @@
+uv init nomedoprojeto 
+https://www.youtube.com/watch?v=HuAc85cLRx0
+uv run main.py (executa )
+troca de versao 
+uv python list 
+uv python install aversaodalista
+uv python pin aversaodalista ---> travar a versoa 
+quando redirecionar um outro toml a versao fica diferente 
+depois coloca uv sync 
+entao se der problema é so mudar substituiu
+uv add fastapi numpy pasdas instala 
+uv add -r requrements.txt--> instalar denovo 
+uv tool ruff ou pyright --> ferramentas de linha de comando 
