@@ -7,10 +7,12 @@ authors = [
     { name = "cassi35", email = "cgrsobral@gmail.com" }
 ]
 requires-python = ">=3.14"
-dependencies = []
+dependencies = [
+]
 
 [project.scripts]
 organize-tasks = "organize_tasks:main"
+
 
 [build-system]
 requires = ["uv_build>=0.11.28,<0.12.0"]
