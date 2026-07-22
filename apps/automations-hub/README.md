@@ -46,3 +46,13 @@ As automações **não chamam essa API por HTTP**. Elas escrevem direto na
 tabela `executions` do banco (via `packages/shared`), então o orchestrator
 funciona só como leitor + painel de controle — ele não precisa estar de pé
 pra uma automação rodar via systemd timer, só o banco precisa estar acessível.
+
+# comandos docker
+
+- docker build -t automations-hub .
+- docker ps -a
+- docker start nomedocontainer
+
+# comandos
+
+- sudo lsof -i :8000 --> matar o processo
