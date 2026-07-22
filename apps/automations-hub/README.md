@@ -51,8 +51,10 @@ pra uma automação rodar via systemd timer, só o banco precisa estar acessíve
 
 - docker build -t automations-hub .
 - docker ps -a
+- docker run -p 8000:8000 automations-hub
 - docker start nomedocontainer
 
 # comandos
 
 - sudo lsof -i :8000 --> matar o processo
+- sudo kill -9 <pid>

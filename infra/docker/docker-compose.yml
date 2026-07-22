@@ -1,0 +1,6 @@
+# docker-compose.yml (pode continuar em infra/docker, ou subir pra raiz, sua escolha)
+services:
+  api:
+    build:
+      context: ../.. # sempre a raiz do monorepo
+      dockerfile: apps/automations-hub/Dockerfile # só o caminho do arquivo muda

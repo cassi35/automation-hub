@@ -55,6 +55,8 @@ docker build -t my-app .
 docker run -p 3000:3000 my-app
 ```
 
+- docker run -p 5173:3000 ui
+
 The containerized application can be deployed to any platform that supports Docker, including:
 
 - AWS ECS

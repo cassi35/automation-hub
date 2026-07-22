@@ -1,0 +1,20 @@
+services:
+  automations-hub:
+    build:
+      context: ./apps/automations-hub
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+
+  ui:
+    build:
+      context: ./apps/ui
+      dockerfile: Dockerfile
+    ports:
+      - "5173:3000"
+    environment:
+      - HOST=0.0.0.0
+    depends_on:
+      - automations-hub
+    restart: unless-stopped
