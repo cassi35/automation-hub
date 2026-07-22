@@ -18,7 +18,7 @@ build-backend = "uv_build"
 
 [tool.uv.workspace]
 members = ["apps/*", "packages/*"]
-
+exclude = ["apps/node_modules", "apps/ui"]
 [dependency-groups]
 dev = [
     "pytest>=9.1.1",
