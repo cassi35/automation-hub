@@ -38,3 +38,18 @@ flowchart TD
 ## Componentes globais usados
 
 Quais módulos de `shared` essa automação depende.
+
+# temaplete install.sh
+
+```
+#!/bin/bash
+echo "criando arquitetura"
+uv init --package packages/nome-da-pasta
+cd packages/nome-da-pasta
+uv add dependencias-da-automacao
+uv sync --all-packages
+echo "
+template init
+" > __init__.py ou main.py
+cd ../..
+```

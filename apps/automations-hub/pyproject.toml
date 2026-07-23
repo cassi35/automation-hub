@@ -8,6 +8,7 @@ authors = [
 ]
 requires-python = ">=3.14"
 dependencies = [
+    "asyncpg>=0.31.0",
     "fastapi>=0.139.2",
     "feedparser>=6.0.12",
     "prompt-toolkit>=3.0.52",

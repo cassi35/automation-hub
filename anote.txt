@@ -11,3 +11,19 @@ entao se der problema é so mudar substituiu
 uv add fastapi numpy pasdas instala 
 uv add -r requrements.txt--> instalar denovo 
 uv tool ruff ou pyright --> ferramentas de linha de comando 
+docker compose up -d --build
+-----------------------------
+db postgrsql
+psql -U postgres -h localhost
+senha: admin 
+\c auomation_tasks; entrar na db
+docker run --name pg-automation \
+  -e POSTGRES_PASSWORD=admin \
+  -e POSTGRES_DB=automation_tasks \
+  -p 5433:5432 \
+  -d postgres:18
+1671fdfe33bffc43b6b34249e6fb2902bb262b50a733f893fed7335d3c90de1f
+PARA CRIACAO DA DB DEPOIS COLOCA NO ENV 
+
+
+docker exec -it pg-automation psql -U postgres -d automation_tasks --> ENTRA NA DB
