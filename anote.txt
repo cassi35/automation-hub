@@ -7,6 +7,7 @@ uv python install aversaodalista
 uv python pin aversaodalista ---> travar a versoa 
 quando redirecionar um outro toml a versao fica diferente 
 depois coloca uv sync 
+uv sync --all-packages
 entao se der problema é so mudar substituiu
 uv add fastapi numpy pasdas instala 
 uv add -r requrements.txt--> instalar denovo 

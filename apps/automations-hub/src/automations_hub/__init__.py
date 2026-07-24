@@ -5,6 +5,7 @@ import uvicorn
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     print("Starting up...")
+    # aqui vai fincar sync_all_manifests()
     yield
     print("Shutting down...")
 
