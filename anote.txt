@@ -28,3 +28,6 @@ PARA CRIACAO DA DB DEPOIS COLOCA NO ENV
 
 
 docker exec -it pg-automation psql -U postgres -d automation_tasks --> ENTRA NA DB
+-----------------------------------------------------
+eu to no padrao layout entao para rodar uv run nomedopackge tenho que 
+importar tudo para dentro de nomedopackge/src/nomedopackge

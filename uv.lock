@@ -555,12 +555,14 @@ source = { editable = "packages/english_news" }
 dependencies = [
     { name = "ipython" },
     { name = "scrapy" },
+    { name = "shared" },
 ]
 
 [package.metadata]
 requires-dist = [
     { name = "ipython", specifier = ">=9.15.0" },
     { name = "scrapy", specifier = ">=2.17.0" },
+    { name = "shared", editable = "packages/shared" },
 ]
 
 [[package]]
