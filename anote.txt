@@ -31,3 +31,4 @@ docker exec -it pg-automation psql -U postgres -d automation_tasks --> ENTRA NA 
 -----------------------------------------------------
 eu to no padrao layout entao para rodar uv run nomedopackge tenho que 
 importar tudo para dentro de nomedopackge/src/nomedopackge
+e as importacoes de dependecia estilo nest sao em cada packge

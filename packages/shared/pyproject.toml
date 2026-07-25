@@ -11,6 +11,7 @@ dependencies = [
     "dotenv>=0.9.9",
     "fastmcp>=3.4.4",
     "psycopg2-binary>=2.9.12",
+    "psycopg[binary]>=3.3.4",
     "pydantic-settings>=2.14.2",
     "sqlalchemy>=2.0.51",
 ]
