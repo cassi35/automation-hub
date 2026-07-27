@@ -32,3 +32,12 @@ docker exec -it pg-automation psql -U postgres -d automation_tasks --> ENTRA NA 
 eu to no padrao layout entao para rodar uv run nomedopackge tenho que 
 importar tudo para dentro de nomedopackge/src/nomedopackge
 e as importacoes de dependecia estilo nest sao em cada packge
+---------------------------------------------------
+psql "tokendadb"
+\dt pra confimar se subiu as tabelas 
+1. sempre que alterar alguma coisa rodar uv run alembic revision --autogenerate -m "criou as tabelas tal"
+2. uv run alembic upgrade head
+3. uv add --dev pytest testcontainers | uv add --dev testcontainers[postgresql]
+isso tudo na root 
+4. uv sync 
+ uv run pytest -s ./test/connection_test.py

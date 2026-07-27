@@ -50,3 +50,24 @@ volumes:
 
 1. inicializar docker file
 2. automatizzar com docker compose
+
+# test
+
+subir testes automatizados com tests container depois de u8m pull request em uma branch criada ,
+rodar testes ,de db , testes de api ,
+
+1. github actions
+2. pytest
+3. testsDabtabaseHnalder
+4. postgresql temporario
+5. alembic upgreade head
+6. testes
+
+testes
+
+1. subir PostgreSQL
+2. obter URL
+3. executar Alembic
+4. criar engine
+5. entregar engine para os testes
+6. destruir PostgreSQL

@@ -1,4 +1,4 @@
-from packages.shared.registry.manifest import AutomationManifest
+from shared.registry.manifest import AutomationManifest
 manifest = AutomationManifest(
     slug="english-news",
     name="English News",

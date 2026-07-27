@@ -25,5 +25,6 @@ exclude = ["apps/node_modules", "apps/ui","packages/*/__pycache__"]
 dev = [
     "pytest>=9.1.1",
     "ruff>=0.15.22",
+    "sqlalchemy>=2.0.51",
+    "testcontainers[postgresql]>=4.15.0",
 ]
-
