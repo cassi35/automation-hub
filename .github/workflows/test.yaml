@@ -1,0 +1,50 @@
+name: Tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  unit:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Instalar uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          version: "latest"
+
+      - name: Configurar Python
+        run: uv python install 3.12
+
+      - name: Instalar dependências
+        run: uv sync --all-packages
+
+      - name: Rodar testes unitários
+        run: uv run pytest -m unit -v
+
+  integration:
+    name: Integration Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Instalar uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          version: "latest"
+
+      - name: Configurar Python
+        run: uv python install 3.12
+
+      - name: Instalar dependências
+        run: uv sync --all-packages
+
+      - name: Rodar testes de integração
+        run: uv run pytest -m integration -v
