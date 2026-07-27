@@ -128,7 +128,7 @@ class ExecutionModel(Base):
         Integer,
         primary_key=True,
     )
-
+    error_message: Mapped[str | None] = mapped_column(Text, nullable=True)
     automation_id: Mapped[int] = mapped_column(
         Integer,
         ForeignKey("automation.id"),
@@ -234,11 +234,11 @@ class ExecutionModel(Base):
 
 class StepModel(Base):
     __tablename__ = "steps"
-
     id: Mapped[int] = mapped_column(
         Integer,
         primary_key=True,
     )
+    error_message: Mapped[str | None] = mapped_column(Text, nullable=True)
 
     name: Mapped[str] = mapped_column(
         String(30),

@@ -57,6 +57,14 @@ import os
 import subprocess
 from pathlib import Path
 import pytest
+def find_root(marker: str = ".git") -> Path:
+    path = Path(__file__).resolve()
+    for parent in path.parents:
+        if (parent / marker).exists():
+            return parent
+    raise FileNotFoundError(f"Não achei {marker} subindo a partir de {path}")
+
+
 AUTOMATIONS_HUB_DIR = Path(__file__).resolve().parent.parent / "apps" / "automations-hub"
 
 class DatabaseTestHandler:

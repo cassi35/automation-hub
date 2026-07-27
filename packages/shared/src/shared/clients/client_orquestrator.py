@@ -1,9 +1,12 @@
-from datetime import datetime
+from datetime import datetime, timezone
 from shared.db.settings.connection import BDConnectionHandler
 from shared.db.entities.automation import AutomationModel,ExecutionModel,MetricModel,StepModel
 class OrchestratorClient:
+    def __init__(self, connection_string: str | None = None):
+        self._connection_string = connection_string
+    def _db(self) -> BDConnectionHandler:
+        return BDConnectionHandler(connection_string=self._connection_string)
     def start_execution(self, automation_name: str) -> int:
-        # cria linha em Execution, status=RUNNING, retorna execution_id
         with BDConnectionHandler() as db:
             automation = db.session.query(AutomationModel).filter_by(name=automation_name).first()
             if automation is None:
@@ -11,25 +14,49 @@ class OrchestratorClient:
             execution = ExecutionModel(
                 automation_id=automation.id,
                 status="process",
-                start_at=datetime.utcnow(),
+                start_at=datetime.now(timezone.utc),
             )
+            db.session.add(execution)
+            db.session.flush()   # gera o id sem precisar sair do "with" ainda
             return execution.id
-        ...
     def start_step(self, execution_id: int, name: str) -> int:
-        # ...  # cria linha em ExecutionStep, status=RUNNING
-        # with BDConnectionHandler() as db:
-        #     pass
-        ...
+        with BDConnectionHandler() as db:
+            step = StepModel(
+                execution_id=execution_id,
+                name=name,
+                status="running",
+            )
+            db.session.add(step)
+            db.session.commit()
+            return step.id
     def finish_step(self, step_id: int) -> None:
-        ...  # status=SUCCESS
-        # with BDConnectionHandler() as db:
-        #     pass
+        with BDConnectionHandler() as db:
+            step = db.session.get(StepModel, step_id)
+            if step is None:
+                raise ValueError(f"Step {step_id} não encontrado")
+            step.status = "stopped"
+
     def fail_step(self, step_id: int, error: str) -> None:
-        ...  # status=FAILED
         with BDConnectionHandler() as db:
-            pass
+            step = db.session.get(StepModel, step_id)
+            if step is None:
+                raise ValueError(f"Step {step_id} não encontrado")
+            step.status = "failed"
+            step.error_message = error
+
     def finish_execution(self, execution_id: int) -> None:
-        ...
         with BDConnectionHandler() as db:
-            pass
-    def fail_execution(self, execution_id: int, error: str) -> None:pass
+            execution = db.session.get(ExecutionModel, execution_id)
+            if execution is None:
+                raise ValueError(f"Execution {execution_id} não encontrada")
+            execution.status = "success"
+            execution.end_at = datetime.now(timezone.utc)
+
+    def fail_execution(self, execution_id: int, error: str) -> None:
+        with BDConnectionHandler() as db:
+            execution = db.session.get(ExecutionModel, execution_id)
+            if execution is None:
+                raise ValueError(f"Execution {execution_id} não encontrada")
+            execution.status = "failed"
+            execution.error_message = error
+            execution.end_at = datetime.now(timezone.utc)
