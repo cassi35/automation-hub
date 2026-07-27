@@ -48,3 +48,30 @@ jobs:
 
       - name: Rodar testes de integração
         run: uv run pytest -m integration -v
+  deploy-db:
+    name: Deploy Database Migrations
+    runs-on: ubuntu-latest
+    needs: [unit, integration]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Instalar uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          version: "latest"
+
+      - name: Configurar Python
+        run: uv python install 3.12
+
+      - name: Instalar dependências
+        run: uv sync --all-packages
+
+      - name: Rodar migrations no banco de produção
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          cd apps/automations-hub
+          uv run alembic upgrade head
