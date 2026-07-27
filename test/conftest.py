@@ -46,16 +46,17 @@
 # def db_handler():
 #     with DatabaseTestHandler() as handler:
 #         yield handler
-from typing import Self
+from typing import Generator, Self
 from types import TracebackType
 from sqlalchemy import create_engine
 from sqlalchemy.engine import Engine
+from sqlalchemy.orm import Session, sessionmaker
 from testcontainers.community.postgres import PostgresContainer
 from shared.config.config import Config
 import os
 import subprocess
 from pathlib import Path
-
+import pytest
 AUTOMATIONS_HUB_DIR = Path(__file__).resolve().parent.parent / "apps" / "automations-hub"
 
 class DatabaseTestHandler:
@@ -104,3 +105,17 @@ class DatabaseTestHandler:
         exc_tb: TracebackType | None,
     ) -> None:
         self.close()
+
+@pytest.fixture(scope="session")
+def db_handler() -> Generator[DatabaseTestHandler, None, None]:
+    with DatabaseTestHandler() as handler:
+        yield handler
+
+
+@pytest.fixture
+def db_session(db_handler: DatabaseTestHandler) -> Generator[Session, None, None]:
+    SessionLocal = sessionmaker(bind=db_handler.get_engine())
+    session = SessionLocal()
+    yield session
+    session.rollback()
+    session.close()

@@ -8,6 +8,7 @@ authors = [
 ]
 requires-python = ">=3.12"
 dependencies = [
+    "rich>=15.0.0",
 ]
 
 [project.scripts]
@@ -27,4 +28,9 @@ dev = [
     "ruff>=0.15.22",
     "sqlalchemy>=2.0.51",
     "testcontainers[postgresql]>=4.15.0",
+]
+[tool.pytest.ini_options]
+markers = [
+    "integration: testes de integracao com banco de dados",
+    "unit: testes unitarios isolados",
 ]

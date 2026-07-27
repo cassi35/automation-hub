@@ -1310,6 +1310,9 @@ wheels = [
 name = "organize-tasks"
 version = "0.1.0"
 source = { editable = "." }
+dependencies = [
+    { name = "rich" },
+]
 
 [package.dev-dependencies]
 dev = [
@@ -1320,6 +1323,7 @@ dev = [
 ]
 
 [package.metadata]
+requires-dist = [{ name = "rich", specifier = ">=15.0.0" }]
 
 [package.metadata.requires-dev]
 dev = [
