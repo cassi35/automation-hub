@@ -10,4 +10,4 @@ RUN uv sync
 
 EXPOSE 8000
 
-CMD ["uv", "run", "automations-hub"]
+CMD ["uv", "run", "--package", "automations-hub", "automations-hub"]

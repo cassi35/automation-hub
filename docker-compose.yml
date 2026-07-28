@@ -1,10 +1,13 @@
 services:
   automations-hub:
     build:
-      context: ./apps/automations-hub
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: apps/automations-hub/Dockerfile
     ports:
       - "8000:8000"
+    volumes:
+      - ./apps/automations-hub:/app/apps/automations-hub
+      - ./packages/shared:/app/packages/shared
     restart: unless-stopped
 
   ui:
