@@ -52,7 +52,11 @@ class AutomationModel(Base):
         Integer,
         primary_key=True,
     )
-
+    slug: Mapped[str] = mapped_column(
+        String(30),
+        nullable=False,
+        unique=True,
+    )
     name: Mapped[str] = mapped_column(
         String(30),
         nullable=False,

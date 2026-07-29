@@ -6,9 +6,9 @@ class OrchestratorClient:
         self._connection_string = connection_string
     def _db(self) -> BDConnectionHandler:
         return BDConnectionHandler(connection_string=self._connection_string)
-    def start_execution(self, automation_name: str) -> int:
+    def start_execution(self, slug: str) -> int:
         with BDConnectionHandler() as db:
-            automation = db.session.query(AutomationModel).filter_by(name=automation_name).first()
+            automation = db.session.query(AutomationModel).filter_by(slug=slug).first()
             if automation is None:
                 raise Exception("Automation not found")
             execution = ExecutionModel(
