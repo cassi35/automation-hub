@@ -41,3 +41,4 @@ psql "tokendadb"
 isso tudo na root 
 4. uv sync 
  uv run pytest -s ./test/connection_test.py
+ rm -rf packages/__pycache_

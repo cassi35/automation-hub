@@ -10,6 +10,7 @@ def test_cria_arvore_completa(db_session):
         name="deploy-prod",
         trigger="github_actions",
         status="active",
+        slug="deploy-prod",
     )
     execution = ExecutionModel(status="process", automation=automation)
     step = StepModel(name="build", status="running", execution=execution)

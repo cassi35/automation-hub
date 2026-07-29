@@ -20,7 +20,11 @@ requires = ["uv_build>=0.11.28,<0.12.0"]
 build-backend = "uv_build"
 
 [tool.uv.workspace]
-members = ["apps/*", "packages/*"]
+members = [
+    "packages/shared",
+    "packages/english_news",
+    "apps/*",
+]
 exclude = ["apps/node_modules", "apps/ui","packages/*/__pycache__"]
 [dependency-groups]
 dev = [
