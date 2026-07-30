@@ -48,6 +48,27 @@ jobs:
 
       - name: Rodar testes de integração
         run: uv run pytest -m integration -v
+  performance:
+    name: performance Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Instalar uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          version: "latest"
+
+      - name: Configurar Python
+        run: uv python install 3.12
+
+      - name: Instalar dependências
+        run: uv sync --all-packages
+
+      - name: Rodar testes de performance
+        run: uv run pytest -s -m performance -v
   deploy-db:
     name: Deploy Database Migrations
     runs-on: ubuntu-latest
