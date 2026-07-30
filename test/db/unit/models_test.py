@@ -56,7 +56,7 @@ def test_cria_arvore_completa(db_session):
 @pytest.mark.integration
 def test_cascade_delete_automation_apaga_executions(db_session):
     """ testa se ao apagar uma automation, também apaga suas executions """
-    automation = AutomationModel(name="job-x", trigger="system", status="active")
+    automation = AutomationModel(slug="job-x", name="job-x", trigger="system", status="active")
     execution = ExecutionModel(status="process", automation=automation)
     db_session.add(automation)
     db_session.commit()
@@ -70,7 +70,7 @@ def test_cascade_delete_automation_apaga_executions(db_session):
 @pytest.mark.integration
 def test_cascade_delete_execution_apaga_steps(db_session):
     """ testa se ao apagar uma execution, também apaga seus steps """
-    automation = AutomationModel(name="job-y", trigger="system", status="active")
+    automation = AutomationModel(slug="job-y", name="job-y", trigger="system", status="active")
     execution = ExecutionModel(status="process", automation=automation)
     step = StepModel(name="lint", status="running", execution=execution)
     db_session.add(automation)

@@ -19,7 +19,7 @@ def test_start_execution_cria_execution_com_status_process(db_session, db_handle
 @pytest.mark.integration
 def test_start_execution_automation_inexistente_falha(db_handler):
     client = OrchestratorClient(connection_string=db_handler.database_url)
-    with pytest.raises(Exception, match="Automation not found"):
+    with pytest.raises(ValueError, match="não encontrada"):
         client.start_execution("nao-existe")
 
 
