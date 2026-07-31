@@ -1,0 +1,3 @@
+[[skills.config]]
+path = "./codex/skills/makerstructure/skill.md"
+enabled = false
