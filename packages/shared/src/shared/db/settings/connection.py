@@ -34,6 +34,7 @@ class BDConnectionHandler:
             print(f"{elapsed:.6f}s -> {statement.split()[0]}")
         self.__session_factory = sessionmaker(
             bind=self.__engine,
+            expire_on_commit=False,
         )
 
     def get_engine(self):

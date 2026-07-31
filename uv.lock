@@ -1274,6 +1274,7 @@ source = { editable = "apps/mcp_server" }
 dependencies = [
     { name = "fastmcp" },
     { name = "rich" },
+    { name = "shared" },
     { name = "uvicorn" },
 ]
 
@@ -1281,6 +1282,7 @@ dependencies = [
 requires-dist = [
     { name = "fastmcp", specifier = ">=3.4.4" },
     { name = "rich", specifier = ">=15.0.0" },
+    { name = "shared", editable = "packages/shared" },
     { name = "uvicorn", specifier = ">=0.51.0" },
 ]
 
