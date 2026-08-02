@@ -12,6 +12,7 @@ mcp = FastMCP(
     lifespan=lifespan
 )
 import mcp_server.tools.automation
+import mcp_server.tools.execution
 def main()-> None:
     mcp.run() 
 
