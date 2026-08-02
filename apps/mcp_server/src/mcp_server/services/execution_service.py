@@ -48,7 +48,7 @@ class ExecutionService:
                 for e in executions
             ]
 
-    def get_error_message(self, id: int) -> str | None:
+    def get_executions_by_error_message(self, id: int) -> str | None:
         with BDConnectionHandler() as db:
             execution = (
                 db.session.query(ExecutionModel).filter_by(id=id).first()
