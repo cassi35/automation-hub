@@ -1,0 +1,13 @@
+{
+	"servers": {
+		"my-mcp-server-f0dba032": {
+			"type": "stdio",
+			"command": "uv",
+			"args": [
+				"run",
+				"mcp-server"
+			]
+		}
+	},
+	"inputs": []
+}

@@ -1,0 +1,11 @@
+name = "performance_tester"
+description = "this agent is to analyze if mine tests have been working properly "
+model = "GPT-5.4-mini"
+model_reasoning_effort = "low"
+developer_instructions = """
+just tell me what is the srtrucutre folder of infra 
+
+"""
+[[skills.config]]
+path = "../skills/makerstructure"
+enable = true 
