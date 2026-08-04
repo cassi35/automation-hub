@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
-
+from rich import print
 from .exeptions import AppError
 from typing import cast
 async def app_error_handler(
@@ -25,6 +25,7 @@ def _walk(cls):
 
 
 def register_error_handlers(app: FastAPI):
-
+    print("[red]Registering error handlers...[/red]")
     for exc in _walk(AppError):
         app.add_exception_handler(exc, app_error_handler)
+    print("[green]Error handlers registered successfully![/green]")
