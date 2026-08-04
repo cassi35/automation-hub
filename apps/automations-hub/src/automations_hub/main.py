@@ -6,7 +6,7 @@ import uvicorn
 from automations_hub.infra.db import init_db
 from rich import print
 from automations_hub.sync_registry import sync_all_manifests
-
+from automations_hub.infra.automation_repository import AutomationRepository
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     print("[green]Starting up...[/green]")

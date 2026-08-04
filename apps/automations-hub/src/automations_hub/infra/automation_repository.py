@@ -2,12 +2,13 @@ from shared.db.settings.connection import BDConnectionHandler
 from shared.db.entities.automation import AutomationModel
 from automations_hub.domain.automation import Automation
 from shared.registry.manifest import AutomationManifest
-from automations_hub.infra.db import get_database
+from automations_hub.infra.db import database
 class AutomationRepository:
     def __init__(self):
-        self._db_factory = get_database
+        self._db:BDConnectionHandler = database
     def upsert_automation(self,manifest:AutomationManifest)->Automation:
-        with self._db_factory() as db:
+
+        with self._db as db:
 
             automation = (
                 db.session.query(AutomationModel)
@@ -41,7 +42,7 @@ class AutomationRepository:
                 trigger_type=automation.trigger,
             )
     def get_by_slug(self, slug: str) -> Automation | None:
-        with self._db_factory() as db:
+        with BDConnectionHandler() as db:
             automation = (
                 db.session
                 .query(AutomationModel)
