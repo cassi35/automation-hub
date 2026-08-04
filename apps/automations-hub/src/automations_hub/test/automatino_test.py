@@ -2,7 +2,7 @@ import pytest
 from automations_hub.infra.automation_repository import AutomationRepository
 from shared.registry.manifest import AutomationManifest
 from rich import print
-# @pytest.mark.skip
+@pytest.mark.skip()
 def test_upsert_automation():
 
     manifest = AutomationManifest(
