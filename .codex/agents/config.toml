@@ -1,3 +1,5 @@
 [[skills.config]]
 path = "./codex/skills/makerstructure/skill.md"
 enabled = false
+[agents]
+max_concurrent_threads_per_session = 6
