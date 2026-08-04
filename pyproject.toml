@@ -40,4 +40,5 @@ markers = [
     "integration: testes de integracao com banco de dados",
     "unit: testes unitarios isolados",
     "performance: testes de performance do sistema",
+    "mcp: testes de mcp",
 ]
