@@ -22,7 +22,7 @@ dependencies = [
 [tool.uv.sources]
 shared = { workspace = true }
 [project.scripts]
-automations-hub = "automations_hub:main"
+automations-hub = "automations_hub.main:main"
 
 
 [build-system]

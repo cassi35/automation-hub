@@ -1,7 +1,7 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from pathlib import Path
-from pathlib import Path
-from pydantic import Field
+
+
 def find_root(marker: str = ".git") -> Path:
     path = Path(__file__).resolve()
     for parent in path.parents:
@@ -29,4 +29,3 @@ class Settings(BaseSettings):
         return self.DATABASE_URL
 
 Config = Settings()
-print(Config.DATABASE_URL)
