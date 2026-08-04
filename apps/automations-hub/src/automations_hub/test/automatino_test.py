@@ -3,6 +3,7 @@ from automations_hub.infra.automation_repository import AutomationRepository
 from shared.registry.manifest import AutomationManifest
 from rich import print
 @pytest.mark.skip()
+@pytest.mark.integration
 def test_upsert_automation():
 
     manifest = AutomationManifest(
@@ -15,6 +16,8 @@ def test_upsert_automation():
     automation_repo = AutomationRepository()
     automation = automation_repo.upsert_automation(manifest)
     print(f"[green]{automation.name}[/green] aqui é o name")
+@pytest.mark.skip()
+@pytest.mark.integration
 def test_get_by_slug():
     automation_repo = AutomationRepository()
     automation = automation_repo.get_by_slug("jira-tasks")
