@@ -23,7 +23,10 @@ jobs:
 
       - name: Instalar dependências
         run: uv sync --all-packages
-
+      - name: Listar arquivos de teste
+        run: |
+          pwd
+          find . -name "*test*.py"
       - name: Rodar testes unitários
         run: uv run pytest -m unit -v
 
@@ -45,7 +48,10 @@ jobs:
 
       - name: Instalar dependências
         run: uv sync --all-packages
-
+      - name: Listar arquivos de teste
+        run: |
+          pwd
+          find . -name "*test*.py"
       - name: Rodar testes de integração
         run: uv run pytest -m integration -v
   performance:
@@ -66,7 +72,10 @@ jobs:
 
       - name: Instalar dependências
         run: uv sync --all-packages
-
+      - name: Listar arquivos de teste
+        run: |
+          pwd
+          find . -name "*test*.py"
       - name: Rodar testes de performance
         run: uv run pytest -s -m performance -v
   deploy-db:

@@ -1,0 +1,69 @@
+project: organize_tasks
+
+modules:
+  automations_hub:
+    path: apps/automations-hub
+    type: backend
+    language: python
+    stack:
+      - fastapi
+      - sqlalchemy
+      - alembic
+      - postgres
+
+    responsibilities:
+      - automation management
+      - execution orchestration
+      - API endpoints
+
+    structure:
+      domain:
+        path: src/automations_hub/domain
+        description: business entities
+
+      services:
+        path: src/automations_hub/services
+        description: application business logic
+
+      infra:
+        path: src/automations_hub/infra
+        description: repositories and external integrations
+
+      routes:
+        path: src/automations_hub/routes
+        description: http controllers
+
+  mcp_server:
+    path: apps/mcp_server
+    type: mcp
+    language: python
+
+    responsibilities:
+      - expose automation tools
+      - expose execution tools
+
+    tools:
+      - automation
+      - execution
+
+  ui:
+    path: apps/ui
+    type: frontend
+    language: typescript
+
+    stack:
+      - react
+      - vite
+
+    responsibilities:
+      - web interface
+
+  shared:
+    path: packages/shared
+    type: library
+    language: python
+
+    responsibilities:
+      - shared clients
+      - database configuration
+      - common services

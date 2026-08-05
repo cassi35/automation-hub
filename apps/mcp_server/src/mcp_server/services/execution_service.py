@@ -7,12 +7,12 @@ class ExecutionService:
     def __init__(self):
         pass
 
-    def get_all_executions_by_id(self, id: int) -> list[ExecutionDTO]:
+    def get_all_executions_by_id(self, id: int,automation_id: int) -> list[ExecutionDTO]:
         with BDConnectionHandler() as db:
             executions = (
                 db.session.query(ExecutionModel)
                 .filter(
-                    (ExecutionModel.automation_id == id)
+                    (ExecutionModel.automation_id == automation_id)
                     | (ExecutionModel.id == id)
                 )
                 .all()
@@ -29,11 +29,11 @@ class ExecutionService:
                 for e in executions
             ]
 
-    def get_execution_by_status(self, status: str) -> list[ExecutionDTO]:
+    def get_execution_by_status(self, status: str,automation_id: int) -> list[ExecutionDTO]:
         with BDConnectionHandler() as db:
             executions = (
                 db.session.query(ExecutionModel)
-                .filter_by(status=status)
+                .filter_by(status=status, automation_id=automation_id)
                 .all()
             )
             return [
@@ -48,10 +48,10 @@ class ExecutionService:
                 for e in executions
             ]
 
-    def get_executions_by_error_message(self, id: int) -> str | None:
+    def get_executions_by_error_message(self, id: int, automation_id: int) -> str | None:
         with BDConnectionHandler() as db:
             execution = (
-                db.session.query(ExecutionModel).filter_by(id=id).first()
+                db.session.query(ExecutionModel).filter_by(id=id, automation_id=automation_id).first()
             )
             if execution is None:
                 return None

@@ -13,6 +13,7 @@ mcp = FastMCP(
 )
 import mcp_server.tools.automation
 import mcp_server.tools.execution
+import mcp_server.tools.endpoints
 def main()-> None:
     mcp.run() 
 

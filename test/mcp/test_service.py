@@ -29,7 +29,7 @@ def test_get_by_slug():
 @pytest.mark.mcp
 def test_get_all_executions_by_id():
     service = ExecutionService()
-    executions = service.get_all_executions_by_id(1)
+    executions = service.get_all_executions_by_id(1,1)
     assert executions is not None
     print(f"[green]Executions found for id 1: {len(executions)}[/green]")
 
@@ -37,7 +37,7 @@ def test_get_all_executions_by_id():
 @pytest.mark.mcp
 def test_get_execution_by_status():
     service = ExecutionService()
-    executions = service.get_execution_by_status("success")
+    executions = service.get_execution_by_status("success",1)
     for execution in executions:
         print(f"[green]Execution ID: {execution.id}, Status: {execution.status}[/green]")
         assert execution.status == "success"
@@ -45,5 +45,5 @@ def test_get_execution_by_status():
 @pytest.mark.mcp
 def test_get_error_message():
     service = ExecutionService()
-    error_message = service.get_executions_by_error_message(1)
+    error_message = service.get_executions_by_error_message(1,1)
     print(f"[green]Error message for execution 1: {error_message}[/green]")

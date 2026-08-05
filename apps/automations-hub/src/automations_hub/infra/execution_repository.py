@@ -1,3 +1,4 @@
 from shared.db.settings.connection import BDConnectionHandler
 class ExecutionnRepository:
-    pass
+    def __init__(self,db:BDConnectionHandler):
+        self._db = db

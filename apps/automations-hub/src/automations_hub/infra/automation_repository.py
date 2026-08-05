@@ -2,9 +2,10 @@ from shared.db.settings.connection import BDConnectionHandler
 from shared.db.entities.automation import AutomationModel
 from automations_hub.domain.automation import Automation
 from shared.registry.manifest import AutomationManifest
+from automations_hub.infra.db import get_database
 class AutomationRepository:
     def __init__(self):
-        self._db = BDConnectionHandler()
+        self._db:BDConnectionHandler = get_database()
     def upsert_automation(self,manifest:AutomationManifest)->Automation:
 
         with self._db as db:
