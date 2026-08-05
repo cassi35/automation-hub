@@ -1,0 +1,37 @@
+# Skill Name
+
+## Purpose
+
+O que a skill faz.
+
+## When to use
+
+Quando o agente deve usar essa skill.
+
+## When NOT to use
+
+Quando o agente não deve usar essa skill.
+
+## Inputs
+
+Quais informações a skill espera.
+
+## Outputs
+
+O que ela produz.
+
+## Workflow
+
+Passo a passo de execução.
+
+## Constraints
+
+Restrições importantes.
+
+## Examples
+
+Exemplos de uso.
+
+## References
+
+Links, RFCs, documentação etc.
