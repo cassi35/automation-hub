@@ -9,9 +9,3 @@ def get_database() -> BDConnectionHandler:
         _database = BDConnectionHandler()
     return _database
 
-async def init_db() -> BDConnectionHandler:
-    db = get_database()
-    print('[green]Initializing database...[/green]')
-    with db as conn:
-        conn.session.connection()
-    return db
