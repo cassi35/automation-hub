@@ -69,4 +69,6 @@ class DatabaseTestHandler:
 pytest_plugins = [
     "test.fixtures.connection_fixture",
     "test.fixtures.fixture_models",
+    "test.fixtures.repositories_fixtures",
+    "test.fixtures.contants_fixture",
 ]
