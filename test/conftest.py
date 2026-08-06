@@ -1,62 +1,14 @@
-# import os
-# import subprocess
-# from pathlib import Path
-
-# from sqlalchemy import create_engine
-# from sqlalchemy.engine import Engine
-# from testcontainers.community.postgres import PostgresContainer
-
-# AUTOMATIONS_HUB_DIR = Path(__file__).resolve().parent.parent / "apps" / "automations-hub"
-# import pytest
-
-# class DatabaseTestHandler:
-#     def __init__(self):
-#         __test__ = False
-#         self.container = PostgresContainer(
-#             "postgres:16",
-#             username="test",
-#             password="test",
-#             dbname="test",
-#         )
-
-#         self.container.start()
-
-#         self.database_url = self.container.get_connection_url()
-
-#         os.environ["DATABASE_URL"] = self.database_url
-
-#         self._run_migrations()
-
-#         self.engine = create_engine(self.database_url)
-
-#     def _run_migrations(self):
-#         subprocess.run(
-#             ["uv", "run", "alembic", "upgrade", "head"],
-#             check=True,
-#             cwd=AUTOMATIONS_HUB_DIR,   # <- roda o comando de dentro dessa pasta
-#         )
-
-#     def get_engine(self) -> Engine:
-#         return self.engine
-
-#     def close(self):
-#         self.engine.dispose()
-#         self.container.stop()
-# @pytest.fixture(scope="session", autouse=True)
-# def db_handler():
-#     with DatabaseTestHandler() as handler:
-#         yield handler
-from typing import Generator, Self
+from typing import  Self
 from types import TracebackType
 from sqlalchemy import create_engine
 from sqlalchemy.engine import Engine
-from sqlalchemy.orm import Session, sessionmaker
 from testcontainers.community.postgres import PostgresContainer
 from shared.config.config import Config
 import os
+from automations_hub.infra.db import get_database
 import subprocess
 from pathlib import Path
-import pytest
+
 def find_root(marker: str = ".git") -> Path:
     path = Path(__file__).resolve()
     for parent in path.parents:
@@ -114,19 +66,7 @@ class DatabaseTestHandler:
     ) -> None:
         self.close()
 
-@pytest.fixture(scope="session")
-def db_handler() -> Generator[DatabaseTestHandler, None, None]:
-    with DatabaseTestHandler() as handler:
-        yield handler
-@pytest.fixture
-def automation_seed(db_handler) -> None:
-    from automations_hub.sync_registry import sync_all_manifests
-    sync_all_manifests()
-
-@pytest.fixture
-def db_session(db_handler: DatabaseTestHandler) -> Generator[Session, None, None]:
-    SessionLocal = sessionmaker(bind=db_handler.get_engine())
-    session = SessionLocal()
-    yield session
-    session.rollback()
-    session.close()
+pytest_plugins = [
+    "test.fixtures.connection_fixture",
+    "test.fixtures.fixture_models",
+]

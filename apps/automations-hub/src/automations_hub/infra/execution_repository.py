@@ -8,7 +8,7 @@ class ExecutionRepository:
     def __init__(self):
         self._db:BDConnectionHandler = get_database()
     def get_by_id(self, execution_id: int)-> Execution| None:
-        with BDConnectionHandler() as db:
+        with self._db as db:
             execution = (
                 db.session
                 .query(ExecutionModel)
@@ -27,7 +27,7 @@ class ExecutionRepository:
                 finished_at=execution.end_at,
             )
     def list_by_automation_id(self, automation_id: int)-> list[Execution]| None:
-                with BDConnectionHandler() as db:
+                with self._db as db:
                      automation= (
                           db.session.query(AutomationModel)
                           .filter_by(id=automation_id)
@@ -55,7 +55,7 @@ class ExecutionRepository:
                           for execution in executions
                      ]
     def get_steps(self, execution_id: int)-> list[Step]:
-        with BDConnectionHandler() as db:
+        with self._db as db:
             steps = (
                 db.session
                 .query(StepModel)
@@ -74,7 +74,7 @@ class ExecutionRepository:
             ]
 
     def get_by_automation_id(self, automation_id: int):
-        with BDConnectionHandler() as db:
+        with self._db as db:
             execution = (
                 db.session
                 .query(ExecutionModel)
@@ -93,7 +93,7 @@ class ExecutionRepository:
                 finished_at=execution.end_at,
             )
     def get_executions_by_slug(self,slug:str)-> list[Execution]:
-        with BDConnectionHandler() as db:
+        with self._db as db:
             executions = (
                 db.session
                 .query(ExecutionModel)
