@@ -1,0 +1,4 @@
+name = "dba-agent"
+description = """
+agente dba responsavel por revisar o impacto de performance do banco local 
+"""
