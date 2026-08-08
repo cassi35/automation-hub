@@ -3,11 +3,15 @@ from automations_hub.dto.automationDto import (
     AutomationStatsResponse,
     ExecutionResponse,
     PauseAutomationResponse,
-    ResumeAutomationResponse,
+    PauseAutomationResponse,
     TriggerAutomationResponse,
 )
-
+from automations_hub.infra.automation_repository import AutomationRepository
+from automations_hub.infra.execution_repository import ExecutionRepository
 class AutomationService:
+    def __init__(self):
+        self._automation_repository = AutomationRepository()
+        self._execution_repository = ExecutionRepository()
     async def get_all_automations(
         self,
     ) -> list[AutomationResponse]:
@@ -28,7 +32,7 @@ class AutomationService:
     async def resume_automation(
         self,
         slug: str,
-    ) -> ResumeAutomationResponse:
+    ) -> PauseAutomationResponse:
         raise NotImplementedError()
 
     async def trigger_automation(
