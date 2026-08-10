@@ -7,6 +7,7 @@ import uvicorn
 from rich import print
 from automations_hub.sync_registry import sync_all_manifests
 from automations_hub.infra.automation_repository import AutomationRepository
+from fastapi.middleware.cors import CORSMiddleware
 
 from automations_hub.routes.automation_route import automation_router
 from automations_hub.routes.execution_route import execution_router
@@ -36,7 +37,17 @@ app = FastAPI(
     version=version,
     lifespan=lifespan,
 )
-
+# middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",
+        "http://localhost:5174",
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 # inclui rotas
 app.include_router(automation_router, prefix=f"/api/{version}/automations", tags=["automations"])
 app.include_router(execution_router, prefix=f"/api/{version}/executions", tags=["executions"])

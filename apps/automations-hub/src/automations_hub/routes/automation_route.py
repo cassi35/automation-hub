@@ -17,6 +17,7 @@ automation_service = AutomationService()
     "/",
     response_model=list[AutomationResponse],
     status_code=status.HTTP_200_OK,
+    operation_id="list_automations",
 )
 async def list_automations():
     """Lista todas as automações."""
@@ -27,6 +28,7 @@ async def list_automations():
     "/{slug}",
     response_model=AutomationResponse,
     status_code=status.HTTP_200_OK,
+    operation_id="get_automation_detail",
 )
 async def get_automation_detail(slug: str):
     """Detalhe de uma automação pelo slug."""
@@ -37,6 +39,7 @@ async def get_automation_detail(slug: str):
     "/{slug}/pause",
     response_model=PauseAutomationResponse,
     status_code=status.HTTP_200_OK,
+    operation_id="pause_automation",
 )
 async def pause_automation(slug: str):
     """Pausa uma automação."""
@@ -47,6 +50,7 @@ async def pause_automation(slug: str):
     "/{slug}/resume",
     response_model=PauseAutomationResponse,
     status_code=status.HTTP_200_OK,
+    operation_id="resume_automation",
 )
 async def resume_automation(slug: str):
     """Retoma uma automação."""
@@ -57,6 +61,7 @@ async def resume_automation(slug: str):
     "/{slug}/trigger",
     response_model=TriggerAutomationResponse,
     status_code=status.HTTP_200_OK,
+    operation_id="trigger_automation",
 )
 async def trigger_automation(slug: str, background_tasks: BackgroundTasks):
     """Dispara execução manual de uma automação."""
@@ -67,6 +72,7 @@ async def trigger_automation(slug: str, background_tasks: BackgroundTasks):
     "/{slug}/executions",
     response_model=list[ExecutionResponse],
     status_code=status.HTTP_200_OK,
+    operation_id="list_automation_executions",
 )
 async def list_automation_executions(slug: str):
     """Histórico de execuções dessa automação."""
@@ -77,6 +83,7 @@ async def list_automation_executions(slug: str):
     "/{slug}/stats",
     response_model=AutomationStatsResponse,
     status_code=status.HTTP_200_OK,
+    operation_id="get_automation_stats",
 )
 async def get_automation_stats(slug: str):
     """Taxa de sucesso e duração média da automação."""

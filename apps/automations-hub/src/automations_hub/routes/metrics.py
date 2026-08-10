@@ -12,6 +12,7 @@ metric_service = MetricService()
     "/steps/{step_id}/metrics",
     response_model=list[MetricResponse],
     status_code=status.HTTP_200_OK,
+    operation_id="list_step_metrics",
 )
 async def list_step_metrics(
     step_id: int,
@@ -24,6 +25,7 @@ async def list_step_metrics(
     "/metrics/{metric_id}",
     response_model=MetricResponse,
     status_code=status.HTTP_200_OK,
+    operation_id="get_metric",
 )
 async def get_metric(
     metric_id: int,
