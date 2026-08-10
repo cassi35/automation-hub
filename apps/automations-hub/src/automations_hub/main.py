@@ -10,7 +10,8 @@ from automations_hub.infra.automation_repository import AutomationRepository
 
 from automations_hub.routes.automation_route import automation_router
 from automations_hub.routes.execution_route import execution_router
-
+from automations_hub.routes.metrics import metric_router
+from automations_hub.routes.steps import step_router
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     print("[green]Starting up...[/green]")
@@ -38,10 +39,9 @@ app = FastAPI(
 
 # inclui rotas
 app.include_router(automation_router, prefix=f"/api/{version}/automations", tags=["automations"])
-app.include_router(automation_router, prefix="/automations", tags=["automations"])
-
 app.include_router(execution_router, prefix=f"/api/{version}/executions", tags=["executions"])
-app.include_router(execution_router, prefix="/executions", tags=["executions"])
+app.include_router(metric_router, prefix=f"/api/{version}/executions", tags=["metrics"])
+app.include_router(step_router, prefix=f"/api/{version}/executions", tags=["steps"])
 
 # rotas princapis teste
 @app.get("/")

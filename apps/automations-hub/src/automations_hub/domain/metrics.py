@@ -1,9 +1,9 @@
+from dataclasses import dataclass
 from datetime import datetime
 
-from pydantic import BaseModel
 
-
-class MetricResponse(BaseModel):
+@dataclass
+class Metric:
     id: int
     execution_at: datetime
     name: str

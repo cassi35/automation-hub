@@ -13,12 +13,6 @@ automation_router = APIRouter(tags=["automations"])
 
 automation_service = AutomationService()
 
-
-@automation_router.get(
-    "",
-    response_model=list[AutomationResponse],
-    status_code=status.HTTP_200_OK,
-)
 @automation_router.get(
     "/",
     response_model=list[AutomationResponse],
