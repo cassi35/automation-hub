@@ -193,3 +193,19 @@ engine = create_engine(database_url)
 engine.dispose()
 container.stop()
 ```
+
+# INFRA SHARED
+
+                ExecutionTracker
+                      │
+                      ▼
+                Queue[DBEvent]
+                      │
+                      ▼
+            ThreadPoolExecutor
+             /    /    \    \
+            ▼    ▼      ▼    ▼
+         worker worker worker worker
+            \     \      /     /
+             \     \    /     /
+              └──── PostgreSQL

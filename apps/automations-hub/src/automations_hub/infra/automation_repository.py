@@ -8,6 +8,7 @@ from automations_hub.infra.db import get_database
 from typing import List
 class AutomationRepository:
     def __init__(self):
+        
         self._db:BDConnectionHandler = get_database()
     def upsert_automation(self,manifest:AutomationManifest)->Automation:
 
@@ -61,12 +62,9 @@ class AutomationRepository:
                 status=automation.status,
                 trigger_type=automation.trigger,
             )
-    def get_all_automations(self,id:int)-> List[Automation] | None:
+    def get_all_automations(self)-> List[Automation] | None:
         with self._db as db:
             automations = db.session.query(AutomationModel).all()
-            if automations is []:
-                return None
-
             return [
                 Automation(
                     id=automation.id,
@@ -77,3 +75,16 @@ class AutomationRepository:
                 )
                 for automation in automations
             ] 
+    def get_all_automations_by_trigger(self,trigger:str):
+        with self._db as db:
+            automations = db.session.query(AutomationModel).filter_by(trigger=trigger).all()
+            return [
+                Automation(
+                    id=automation.id,
+                    slug=automation.slug,
+                    name=automation.name,
+                    status=automation.status,
+                    trigger_type=automation.trigger,
+                )
+                for automation in automations
+            ]

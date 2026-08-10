@@ -60,7 +60,7 @@ async def resume_automation(slug: str):
 )
 async def trigger_automation(slug: str, background_tasks: BackgroundTasks):
     """Dispara execução manual de uma automação."""
-    return await automation_service.trigger_automation(slug)
+    return await automation_service.get_executions_by_automation_slug(slug)
 
 
 @automation_router.get(

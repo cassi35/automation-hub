@@ -11,7 +11,6 @@ class ExecutionRepository:
 
     def get_by_execution_id(self, execution_id: int) -> Execution | None:
         with self._db as db:
-            db.session.query(ExecutionModel).filter_by(id=execution_id).first()
             execution = db.session.query(ExecutionModel).filter_by(id=execution_id).first()
             if execution is None:
                 return None

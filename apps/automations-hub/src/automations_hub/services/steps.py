@@ -10,4 +10,14 @@ class StepService:
         self,
         execution_id: int,
     ) -> list[Step]:
-        return self._execution_repository.get_steps(execution_id)
+        steps =  self._execution_repository.get_steps(execution_id)
+
+        return [
+            Step(
+                id=step.id,
+                name=step.name,
+                status=step.status,
+                execution_id=step.execution_id
+            )
+            for step in steps
+        ]
