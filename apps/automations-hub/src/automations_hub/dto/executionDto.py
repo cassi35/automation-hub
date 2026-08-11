@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from pydantic import BaseModel, ConfigDict
-
+from automations_hub.domain.steps import Step
 
 class StepResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
@@ -12,6 +12,13 @@ class StepResponse(BaseModel):
     error_message: str | None
 
 
+
+class ExecutionStepResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: int
+    name: str
+    status: str
 class ExecutionResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
@@ -23,11 +30,4 @@ class ExecutionResponse(BaseModel):
     error_message: str | None
     steps: list[StepResponse]
 
-
-class ExecutionStepResponse(BaseModel):
-    model_config = ConfigDict(from_attributes=True)
-
-    id: int
-    name: str
-    status: str
     error_message: str | None

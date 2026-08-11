@@ -26,7 +26,7 @@ members = [
     "packages/english_news",
     "apps/*",
 ]
-exclude = ["apps/node_modules", "apps/ui","packages/*/__pycache__"]
+exclude = ["apps/node_modules", "apps/ui-client","packages/*/__pycache__"]
 [dependency-groups]
 dev = [
     "pytest>=9.1.1",

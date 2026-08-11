@@ -9,7 +9,6 @@ class AutomationResponse(BaseModel):
     id: int
     slug: str
     name: str
-    description: str | None
     trigger: str
     status: str
 
