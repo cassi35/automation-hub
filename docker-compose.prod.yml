@@ -16,8 +16,7 @@ services:
     build:
       context: ./apps/ui-client
       dockerfile: Dockerfile
-      args:
-        AUTOMATION_HUB: ${AUTOMATION_HUB}
+
     ports:
       - "5173:3000"
     env_file:
