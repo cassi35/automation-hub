@@ -1,4 +1,5 @@
 from datetime import datetime, timezone
+import sys
 from shared.db.settings.connection import BDConnectionHandler
 from sqlalchemy import update
 from shared.db.entities.automation import AutomationModel,ExecutionModel,MetricModel,StepModel
@@ -16,22 +17,45 @@ class OrchestratorClient:
         return self._db
 
     def start_execution(self, slug: str) -> int:
-        self._db = self._handler.__enter__()  # abre a sessão UMA vez, fica viva até finish/fail
+        # self._db = self._handler.__enter__()  # abre a sessão UMA vez, fica viva até finish/fail
 
-        automation = self._db.session.query(AutomationModel).filter_by(slug=slug).first()
-        if automation is None:
-            raise ValueError(f"Automation '{slug}' não encontrada")
+        # automation = self._db.session.query(AutomationModel).filter_by(slug=slug).first()
+        # if automation is None:
+        #     raise ValueError(f"Automation '{slug}' não encontrada")
 
-        execution = ExecutionModel(
+        # execution = ExecutionModel(
+        #     automation_id=automation.id,
+        #     status="process",
+        #     start_at=datetime.now(timezone.utc),
+        # )
+        # self._db.session.add(execution)
+        # self._db.session.flush()
+        # self._db.session.commit()
+        # return execution.id
+        self._db = self._handler.__enter__()
+
+        try:
+            automation = (
+                self._db.session.query(AutomationModel)
+                .filter_by(slug=slug)
+                .first()
+            )
+            if automation is None:
+                raise ValueError(f"Automation '{slug}' não encontrada")
+
+            execution = ExecutionModel(
             automation_id=automation.id,
             status="process",
             start_at=datetime.now(timezone.utc),
         )
-        self._db.session.add(execution)
-        self._db.session.flush()
-        self._db.session.commit()
-        return execution.id
-
+            self._db.session.add(execution)
+            self._db.session.flush()
+            self._db.session.commit()
+            return execution.id
+        except Exception:
+            self._handler.__exit__(*sys.exc_info())
+            self._db = None
+            raise
     def start_step(self, execution_id: int, name: str) -> int:
         db = self._require_db()
         step = StepModel(execution_id=execution_id, name=name, status="running")

@@ -45,3 +45,19 @@ isso tudo na root
  docker compose -f docker-compose.prod.yml up -d --build
   docker compose -f docker-compose.prod.yml config
   docker stop $(docker ps -q)
+
+```
+Rode:
+
+docker compose \
+  --env-file .env.production \
+  -f docker-compose.prod.yml \
+  build --no-cache ui
+
+Depois:
+
+docker compose \
+  --env-file .env.production \
+  -f docker-compose.prod.yml \
+  up -d
+  ```
