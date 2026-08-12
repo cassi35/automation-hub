@@ -34,7 +34,6 @@ export interface AutomationResponse {
   id: number;
   slug: string;
   name: string;
-  description: string | null;
   trigger: string;
   status: string;
 }
@@ -131,19 +130,19 @@ const withQueryKey = <T extends object, K>(query: T, queryKey: K): T & { queryKe
   return result;
 };
 
-export type listAutomationsApi010AutomationsGetResponse200 = {
+export type listAutomationsResponse200 = {
   data: AutomationResponse[]
   status: 200
 }
 
-export type listAutomationsApi010AutomationsGetResponseSuccess = (listAutomationsApi010AutomationsGetResponse200) & {
+export type listAutomationsResponseSuccess = (listAutomationsResponse200) & {
   headers: Headers;
 };
 ;
 
-export type listAutomationsApi010AutomationsGetResponse = (listAutomationsApi010AutomationsGetResponseSuccess)
+export type listAutomationsResponse = (listAutomationsResponseSuccess)
 
-export const getListAutomationsApi010AutomationsGetUrl = () => {
+export const getListAutomationsUrl = () => {
 
 
 
@@ -155,9 +154,9 @@ export const getListAutomationsApi010AutomationsGetUrl = () => {
  * Lista todas as automações.
  * @summary List Automations
  */
-export const listAutomationsApi010AutomationsGet = async ( options?: Parameters<typeof api>[1]): Promise<listAutomationsApi010AutomationsGetResponse> => {
+export const listAutomations = async ( options?: Parameters<typeof api>[1]): Promise<listAutomationsResponse> => {
 
-  return api<listAutomationsApi010AutomationsGetResponse>(getListAutomationsApi010AutomationsGetUrl(),
+  return api<listAutomationsResponse>(getListAutomationsUrl(),
   {
     ...options,
     method: 'GET'
@@ -170,69 +169,69 @@ export const listAutomationsApi010AutomationsGet = async ( options?: Parameters<
 
 
 
-export const getListAutomationsApi010AutomationsGetQueryKey = () => {
+export const getListAutomationsQueryKey = () => {
     return [
     `/api/0.1.0/automations/`
     ] as const;
     }
 
 
-export const getListAutomationsApi010AutomationsGetQueryOptions = <TData = Awaited<ReturnType<typeof listAutomationsApi010AutomationsGet>>, TError = unknown>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listAutomationsApi010AutomationsGet>>, TError, TData>>, request?: SecondParameter<typeof api>}
+export const getListAutomationsQueryOptions = <TData = Awaited<ReturnType<typeof listAutomations>>, TError = unknown>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listAutomations>>, TError, TData>>, request?: SecondParameter<typeof api>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getListAutomationsApi010AutomationsGetQueryKey();
+  const queryKey =  queryOptions?.queryKey ?? getListAutomationsQueryKey();
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof listAutomationsApi010AutomationsGet>>> = ({ signal }) => listAutomationsApi010AutomationsGet({ signal, ...requestOptions });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof listAutomations>>> = ({ signal }) => listAutomations({ signal, ...requestOptions });
 
 
 
 
 
-   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof listAutomationsApi010AutomationsGet>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof listAutomations>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
 }
 
-export type ListAutomationsApi010AutomationsGetQueryResult = NonNullable<Awaited<ReturnType<typeof listAutomationsApi010AutomationsGet>>>
-export type ListAutomationsApi010AutomationsGetQueryError = unknown
+export type ListAutomationsQueryResult = NonNullable<Awaited<ReturnType<typeof listAutomations>>>
+export type ListAutomationsQueryError = unknown
 
 
-export function useListAutomationsApi010AutomationsGet<TData = Awaited<ReturnType<typeof listAutomationsApi010AutomationsGet>>, TError = unknown>(
-  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof listAutomationsApi010AutomationsGet>>, TError, TData>> & Pick<
+export function useListAutomations<TData = Awaited<ReturnType<typeof listAutomations>>, TError = unknown>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof listAutomations>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof listAutomationsApi010AutomationsGet>>,
+          Awaited<ReturnType<typeof listAutomations>>,
           TError,
-          Awaited<ReturnType<typeof listAutomationsApi010AutomationsGet>>
+          Awaited<ReturnType<typeof listAutomations>>
         > , 'initialData'
       >, request?: SecondParameter<typeof api>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useListAutomationsApi010AutomationsGet<TData = Awaited<ReturnType<typeof listAutomationsApi010AutomationsGet>>, TError = unknown>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listAutomationsApi010AutomationsGet>>, TError, TData>> & Pick<
+export function useListAutomations<TData = Awaited<ReturnType<typeof listAutomations>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listAutomations>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof listAutomationsApi010AutomationsGet>>,
+          Awaited<ReturnType<typeof listAutomations>>,
           TError,
-          Awaited<ReturnType<typeof listAutomationsApi010AutomationsGet>>
+          Awaited<ReturnType<typeof listAutomations>>
         > , 'initialData'
       >, request?: SecondParameter<typeof api>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useListAutomationsApi010AutomationsGet<TData = Awaited<ReturnType<typeof listAutomationsApi010AutomationsGet>>, TError = unknown>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listAutomationsApi010AutomationsGet>>, TError, TData>>, request?: SecondParameter<typeof api>}
+export function useListAutomations<TData = Awaited<ReturnType<typeof listAutomations>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listAutomations>>, TError, TData>>, request?: SecondParameter<typeof api>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
  * @summary List Automations
  */
 
-export function useListAutomationsApi010AutomationsGet<TData = Awaited<ReturnType<typeof listAutomationsApi010AutomationsGet>>, TError = unknown>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listAutomationsApi010AutomationsGet>>, TError, TData>>, request?: SecondParameter<typeof api>}
+export function useListAutomations<TData = Awaited<ReturnType<typeof listAutomations>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listAutomations>>, TError, TData>>, request?: SecondParameter<typeof api>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
-  const queryOptions = getListAutomationsApi010AutomationsGetQueryOptions(options)
+  const queryOptions = getListAutomationsQueryOptions(options)
 
   const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
@@ -245,26 +244,26 @@ export function useListAutomationsApi010AutomationsGet<TData = Awaited<ReturnTyp
 
 
 
-export type getAutomationDetailApi010AutomationsSlugGetResponse200 = {
+export type getAutomationDetailResponse200 = {
   data: AutomationResponse
   status: 200
 }
 
-export type getAutomationDetailApi010AutomationsSlugGetResponse422 = {
+export type getAutomationDetailResponse422 = {
   data: HTTPValidationError
   status: 422
 }
 
-export type getAutomationDetailApi010AutomationsSlugGetResponseSuccess = (getAutomationDetailApi010AutomationsSlugGetResponse200) & {
+export type getAutomationDetailResponseSuccess = (getAutomationDetailResponse200) & {
   headers: Headers;
 };
-export type getAutomationDetailApi010AutomationsSlugGetResponseError = (getAutomationDetailApi010AutomationsSlugGetResponse422) & {
+export type getAutomationDetailResponseError = (getAutomationDetailResponse422) & {
   headers: Headers;
 };
 
-export type getAutomationDetailApi010AutomationsSlugGetResponse = (getAutomationDetailApi010AutomationsSlugGetResponseSuccess | getAutomationDetailApi010AutomationsSlugGetResponseError)
+export type getAutomationDetailResponse = (getAutomationDetailResponseSuccess | getAutomationDetailResponseError)
 
-export const getGetAutomationDetailApi010AutomationsSlugGetUrl = (slug: string,) => {
+export const getGetAutomationDetailUrl = (slug: string,) => {
 
 
 
@@ -276,9 +275,9 @@ export const getGetAutomationDetailApi010AutomationsSlugGetUrl = (slug: string,)
  * Detalhe de uma automação pelo slug.
  * @summary Get Automation Detail
  */
-export const getAutomationDetailApi010AutomationsSlugGet = async (slug: string, options?: Parameters<typeof api>[1]): Promise<getAutomationDetailApi010AutomationsSlugGetResponse> => {
+export const getAutomationDetail = async (slug: string, options?: Parameters<typeof api>[1]): Promise<getAutomationDetailResponse> => {
 
-  return api<getAutomationDetailApi010AutomationsSlugGetResponse>(getGetAutomationDetailApi010AutomationsSlugGetUrl(slug),
+  return api<getAutomationDetailResponse>(getGetAutomationDetailUrl(slug),
   {
     ...options,
     method: 'GET'
@@ -291,69 +290,69 @@ export const getAutomationDetailApi010AutomationsSlugGet = async (slug: string, 
 
 
 
-export const getGetAutomationDetailApi010AutomationsSlugGetQueryKey = (slug: string,) => {
+export const getGetAutomationDetailQueryKey = (slug: string,) => {
     return [
     `/api/0.1.0/automations/${slug}`
     ] as const;
     }
 
 
-export const getGetAutomationDetailApi010AutomationsSlugGetQueryOptions = <TData = Awaited<ReturnType<typeof getAutomationDetailApi010AutomationsSlugGet>>, TError = HTTPValidationError>(slug: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAutomationDetailApi010AutomationsSlugGet>>, TError, TData>>, request?: SecondParameter<typeof api>}
+export const getGetAutomationDetailQueryOptions = <TData = Awaited<ReturnType<typeof getAutomationDetail>>, TError = HTTPValidationError>(slug: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAutomationDetail>>, TError, TData>>, request?: SecondParameter<typeof api>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getGetAutomationDetailApi010AutomationsSlugGetQueryKey(slug);
+  const queryKey =  queryOptions?.queryKey ?? getGetAutomationDetailQueryKey(slug);
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getAutomationDetailApi010AutomationsSlugGet>>> = ({ signal }) => getAutomationDetailApi010AutomationsSlugGet(slug, { signal, ...requestOptions });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getAutomationDetail>>> = ({ signal }) => getAutomationDetail(slug, { signal, ...requestOptions });
 
 
 
 
 
-   return  { queryKey, queryFn, enabled: slug !== null && slug !== undefined, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getAutomationDetailApi010AutomationsSlugGet>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+   return  { queryKey, queryFn, enabled: slug !== null && slug !== undefined, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getAutomationDetail>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
 }
 
-export type GetAutomationDetailApi010AutomationsSlugGetQueryResult = NonNullable<Awaited<ReturnType<typeof getAutomationDetailApi010AutomationsSlugGet>>>
-export type GetAutomationDetailApi010AutomationsSlugGetQueryError = HTTPValidationError
+export type GetAutomationDetailQueryResult = NonNullable<Awaited<ReturnType<typeof getAutomationDetail>>>
+export type GetAutomationDetailQueryError = HTTPValidationError
 
 
-export function useGetAutomationDetailApi010AutomationsSlugGet<TData = Awaited<ReturnType<typeof getAutomationDetailApi010AutomationsSlugGet>>, TError = HTTPValidationError>(
- slug: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAutomationDetailApi010AutomationsSlugGet>>, TError, TData>> & Pick<
+export function useGetAutomationDetail<TData = Awaited<ReturnType<typeof getAutomationDetail>>, TError = HTTPValidationError>(
+ slug: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAutomationDetail>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getAutomationDetailApi010AutomationsSlugGet>>,
+          Awaited<ReturnType<typeof getAutomationDetail>>,
           TError,
-          Awaited<ReturnType<typeof getAutomationDetailApi010AutomationsSlugGet>>
+          Awaited<ReturnType<typeof getAutomationDetail>>
         > , 'initialData'
       >, request?: SecondParameter<typeof api>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetAutomationDetailApi010AutomationsSlugGet<TData = Awaited<ReturnType<typeof getAutomationDetailApi010AutomationsSlugGet>>, TError = HTTPValidationError>(
- slug: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAutomationDetailApi010AutomationsSlugGet>>, TError, TData>> & Pick<
+export function useGetAutomationDetail<TData = Awaited<ReturnType<typeof getAutomationDetail>>, TError = HTTPValidationError>(
+ slug: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAutomationDetail>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getAutomationDetailApi010AutomationsSlugGet>>,
+          Awaited<ReturnType<typeof getAutomationDetail>>,
           TError,
-          Awaited<ReturnType<typeof getAutomationDetailApi010AutomationsSlugGet>>
+          Awaited<ReturnType<typeof getAutomationDetail>>
         > , 'initialData'
       >, request?: SecondParameter<typeof api>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetAutomationDetailApi010AutomationsSlugGet<TData = Awaited<ReturnType<typeof getAutomationDetailApi010AutomationsSlugGet>>, TError = HTTPValidationError>(
- slug: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAutomationDetailApi010AutomationsSlugGet>>, TError, TData>>, request?: SecondParameter<typeof api>}
+export function useGetAutomationDetail<TData = Awaited<ReturnType<typeof getAutomationDetail>>, TError = HTTPValidationError>(
+ slug: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAutomationDetail>>, TError, TData>>, request?: SecondParameter<typeof api>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
  * @summary Get Automation Detail
  */
 
-export function useGetAutomationDetailApi010AutomationsSlugGet<TData = Awaited<ReturnType<typeof getAutomationDetailApi010AutomationsSlugGet>>, TError = HTTPValidationError>(
- slug: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAutomationDetailApi010AutomationsSlugGet>>, TError, TData>>, request?: SecondParameter<typeof api>}
+export function useGetAutomationDetail<TData = Awaited<ReturnType<typeof getAutomationDetail>>, TError = HTTPValidationError>(
+ slug: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAutomationDetail>>, TError, TData>>, request?: SecondParameter<typeof api>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
-  const queryOptions = getGetAutomationDetailApi010AutomationsSlugGetQueryOptions(slug,options)
+  const queryOptions = getGetAutomationDetailQueryOptions(slug,options)
 
   const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
@@ -366,26 +365,26 @@ export function useGetAutomationDetailApi010AutomationsSlugGet<TData = Awaited<R
 
 
 
-export type pauseAutomationApi010AutomationsSlugPausePatchResponse200 = {
+export type pauseAutomationResponse200 = {
   data: PauseAutomationResponse
   status: 200
 }
 
-export type pauseAutomationApi010AutomationsSlugPausePatchResponse422 = {
+export type pauseAutomationResponse422 = {
   data: HTTPValidationError
   status: 422
 }
 
-export type pauseAutomationApi010AutomationsSlugPausePatchResponseSuccess = (pauseAutomationApi010AutomationsSlugPausePatchResponse200) & {
+export type pauseAutomationResponseSuccess = (pauseAutomationResponse200) & {
   headers: Headers;
 };
-export type pauseAutomationApi010AutomationsSlugPausePatchResponseError = (pauseAutomationApi010AutomationsSlugPausePatchResponse422) & {
+export type pauseAutomationResponseError = (pauseAutomationResponse422) & {
   headers: Headers;
 };
 
-export type pauseAutomationApi010AutomationsSlugPausePatchResponse = (pauseAutomationApi010AutomationsSlugPausePatchResponseSuccess | pauseAutomationApi010AutomationsSlugPausePatchResponseError)
+export type pauseAutomationResponse = (pauseAutomationResponseSuccess | pauseAutomationResponseError)
 
-export const getPauseAutomationApi010AutomationsSlugPausePatchUrl = (slug: string,) => {
+export const getPauseAutomationUrl = (slug: string,) => {
 
 
 
@@ -397,9 +396,9 @@ export const getPauseAutomationApi010AutomationsSlugPausePatchUrl = (slug: strin
  * Pausa uma automação.
  * @summary Pause Automation
  */
-export const pauseAutomationApi010AutomationsSlugPausePatch = async (slug: string, options?: Parameters<typeof api>[1]): Promise<pauseAutomationApi010AutomationsSlugPausePatchResponse> => {
+export const pauseAutomation = async (slug: string, options?: Parameters<typeof api>[1]): Promise<pauseAutomationResponse> => {
 
-  return api<pauseAutomationApi010AutomationsSlugPausePatchResponse>(getPauseAutomationApi010AutomationsSlugPausePatchUrl(slug),
+  return api<pauseAutomationResponse>(getPauseAutomationUrl(slug),
   {
     ...options,
     method: 'PATCH'
@@ -412,11 +411,11 @@ export const pauseAutomationApi010AutomationsSlugPausePatch = async (slug: strin
 
 
 
-export const getPauseAutomationApi010AutomationsSlugPausePatchMutationOptions = <TError = HTTPValidationError,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof pauseAutomationApi010AutomationsSlugPausePatch>>, TError,{slug: string}, TContext>, request?: SecondParameter<typeof api>}
-): UseMutationOptions<Awaited<ReturnType<typeof pauseAutomationApi010AutomationsSlugPausePatch>>, TError,{slug: string}, TContext> => {
+export const getPauseAutomationMutationOptions = <TError = HTTPValidationError,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof pauseAutomation>>, TError,{slug: string}, TContext>, request?: SecondParameter<typeof api>}
+): UseMutationOptions<Awaited<ReturnType<typeof pauseAutomation>>, TError,{slug: string}, TContext> => {
 
-const mutationKey = ['pauseAutomationApi010AutomationsSlugPausePatch'];
+const mutationKey = ['pauseAutomation'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
@@ -426,10 +425,10 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof pauseAutomationApi010AutomationsSlugPausePatch>>, {slug: string}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof pauseAutomation>>, {slug: string}> = (props) => {
           const {slug} = props ?? {};
 
-          return  pauseAutomationApi010AutomationsSlugPausePatch(slug,requestOptions)
+          return  pauseAutomation(slug,requestOptions)
         }
 
 
@@ -439,44 +438,44 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
   return  { mutationFn, ...mutationOptions }}
 
-    export type PauseAutomationApi010AutomationsSlugPausePatchMutationResult = NonNullable<Awaited<ReturnType<typeof pauseAutomationApi010AutomationsSlugPausePatch>>>
+    export type PauseAutomationMutationResult = NonNullable<Awaited<ReturnType<typeof pauseAutomation>>>
 
-    export type PauseAutomationApi010AutomationsSlugPausePatchMutationError = HTTPValidationError
+    export type PauseAutomationMutationError = HTTPValidationError
 
     /**
  * @summary Pause Automation
  */
-export const usePauseAutomationApi010AutomationsSlugPausePatch = <TError = HTTPValidationError,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof pauseAutomationApi010AutomationsSlugPausePatch>>, TError,{slug: string}, TContext>, request?: SecondParameter<typeof api>}
+export const usePauseAutomation = <TError = HTTPValidationError,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof pauseAutomation>>, TError,{slug: string}, TContext>, request?: SecondParameter<typeof api>}
  , queryClient?: QueryClient): UseMutationResult<
-        Awaited<ReturnType<typeof pauseAutomationApi010AutomationsSlugPausePatch>>,
+        Awaited<ReturnType<typeof pauseAutomation>>,
         TError,
         {slug: string},
         TContext
       > => {
-      return useMutation(getPauseAutomationApi010AutomationsSlugPausePatchMutationOptions(options), queryClient);
+      return useMutation(getPauseAutomationMutationOptions(options), queryClient);
     }
 
-export type resumeAutomationApi010AutomationsSlugResumePatchResponse200 = {
+export type resumeAutomationResponse200 = {
   data: PauseAutomationResponse
   status: 200
 }
 
-export type resumeAutomationApi010AutomationsSlugResumePatchResponse422 = {
+export type resumeAutomationResponse422 = {
   data: HTTPValidationError
   status: 422
 }
 
-export type resumeAutomationApi010AutomationsSlugResumePatchResponseSuccess = (resumeAutomationApi010AutomationsSlugResumePatchResponse200) & {
+export type resumeAutomationResponseSuccess = (resumeAutomationResponse200) & {
   headers: Headers;
 };
-export type resumeAutomationApi010AutomationsSlugResumePatchResponseError = (resumeAutomationApi010AutomationsSlugResumePatchResponse422) & {
+export type resumeAutomationResponseError = (resumeAutomationResponse422) & {
   headers: Headers;
 };
 
-export type resumeAutomationApi010AutomationsSlugResumePatchResponse = (resumeAutomationApi010AutomationsSlugResumePatchResponseSuccess | resumeAutomationApi010AutomationsSlugResumePatchResponseError)
+export type resumeAutomationResponse = (resumeAutomationResponseSuccess | resumeAutomationResponseError)
 
-export const getResumeAutomationApi010AutomationsSlugResumePatchUrl = (slug: string,) => {
+export const getResumeAutomationUrl = (slug: string,) => {
 
 
 
@@ -488,9 +487,9 @@ export const getResumeAutomationApi010AutomationsSlugResumePatchUrl = (slug: str
  * Retoma uma automação.
  * @summary Resume Automation
  */
-export const resumeAutomationApi010AutomationsSlugResumePatch = async (slug: string, options?: Parameters<typeof api>[1]): Promise<resumeAutomationApi010AutomationsSlugResumePatchResponse> => {
+export const resumeAutomation = async (slug: string, options?: Parameters<typeof api>[1]): Promise<resumeAutomationResponse> => {
 
-  return api<resumeAutomationApi010AutomationsSlugResumePatchResponse>(getResumeAutomationApi010AutomationsSlugResumePatchUrl(slug),
+  return api<resumeAutomationResponse>(getResumeAutomationUrl(slug),
   {
     ...options,
     method: 'PATCH'
@@ -503,11 +502,11 @@ export const resumeAutomationApi010AutomationsSlugResumePatch = async (slug: str
 
 
 
-export const getResumeAutomationApi010AutomationsSlugResumePatchMutationOptions = <TError = HTTPValidationError,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof resumeAutomationApi010AutomationsSlugResumePatch>>, TError,{slug: string}, TContext>, request?: SecondParameter<typeof api>}
-): UseMutationOptions<Awaited<ReturnType<typeof resumeAutomationApi010AutomationsSlugResumePatch>>, TError,{slug: string}, TContext> => {
+export const getResumeAutomationMutationOptions = <TError = HTTPValidationError,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof resumeAutomation>>, TError,{slug: string}, TContext>, request?: SecondParameter<typeof api>}
+): UseMutationOptions<Awaited<ReturnType<typeof resumeAutomation>>, TError,{slug: string}, TContext> => {
 
-const mutationKey = ['resumeAutomationApi010AutomationsSlugResumePatch'];
+const mutationKey = ['resumeAutomation'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
@@ -517,10 +516,10 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof resumeAutomationApi010AutomationsSlugResumePatch>>, {slug: string}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof resumeAutomation>>, {slug: string}> = (props) => {
           const {slug} = props ?? {};
 
-          return  resumeAutomationApi010AutomationsSlugResumePatch(slug,requestOptions)
+          return  resumeAutomation(slug,requestOptions)
         }
 
 
@@ -530,44 +529,44 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
   return  { mutationFn, ...mutationOptions }}
 
-    export type ResumeAutomationApi010AutomationsSlugResumePatchMutationResult = NonNullable<Awaited<ReturnType<typeof resumeAutomationApi010AutomationsSlugResumePatch>>>
+    export type ResumeAutomationMutationResult = NonNullable<Awaited<ReturnType<typeof resumeAutomation>>>
 
-    export type ResumeAutomationApi010AutomationsSlugResumePatchMutationError = HTTPValidationError
+    export type ResumeAutomationMutationError = HTTPValidationError
 
     /**
  * @summary Resume Automation
  */
-export const useResumeAutomationApi010AutomationsSlugResumePatch = <TError = HTTPValidationError,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof resumeAutomationApi010AutomationsSlugResumePatch>>, TError,{slug: string}, TContext>, request?: SecondParameter<typeof api>}
+export const useResumeAutomation = <TError = HTTPValidationError,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof resumeAutomation>>, TError,{slug: string}, TContext>, request?: SecondParameter<typeof api>}
  , queryClient?: QueryClient): UseMutationResult<
-        Awaited<ReturnType<typeof resumeAutomationApi010AutomationsSlugResumePatch>>,
+        Awaited<ReturnType<typeof resumeAutomation>>,
         TError,
         {slug: string},
         TContext
       > => {
-      return useMutation(getResumeAutomationApi010AutomationsSlugResumePatchMutationOptions(options), queryClient);
+      return useMutation(getResumeAutomationMutationOptions(options), queryClient);
     }
 
-export type triggerAutomationApi010AutomationsSlugTriggerPostResponse200 = {
+export type triggerAutomationResponse200 = {
   data: TriggerAutomationResponse
   status: 200
 }
 
-export type triggerAutomationApi010AutomationsSlugTriggerPostResponse422 = {
+export type triggerAutomationResponse422 = {
   data: HTTPValidationError
   status: 422
 }
 
-export type triggerAutomationApi010AutomationsSlugTriggerPostResponseSuccess = (triggerAutomationApi010AutomationsSlugTriggerPostResponse200) & {
+export type triggerAutomationResponseSuccess = (triggerAutomationResponse200) & {
   headers: Headers;
 };
-export type triggerAutomationApi010AutomationsSlugTriggerPostResponseError = (triggerAutomationApi010AutomationsSlugTriggerPostResponse422) & {
+export type triggerAutomationResponseError = (triggerAutomationResponse422) & {
   headers: Headers;
 };
 
-export type triggerAutomationApi010AutomationsSlugTriggerPostResponse = (triggerAutomationApi010AutomationsSlugTriggerPostResponseSuccess | triggerAutomationApi010AutomationsSlugTriggerPostResponseError)
+export type triggerAutomationResponse = (triggerAutomationResponseSuccess | triggerAutomationResponseError)
 
-export const getTriggerAutomationApi010AutomationsSlugTriggerPostUrl = (slug: string,) => {
+export const getTriggerAutomationUrl = (slug: string,) => {
 
 
 
@@ -579,9 +578,9 @@ export const getTriggerAutomationApi010AutomationsSlugTriggerPostUrl = (slug: st
  * Dispara execução manual de uma automação.
  * @summary Trigger Automation
  */
-export const triggerAutomationApi010AutomationsSlugTriggerPost = async (slug: string, options?: Parameters<typeof api>[1]): Promise<triggerAutomationApi010AutomationsSlugTriggerPostResponse> => {
+export const triggerAutomation = async (slug: string, options?: Parameters<typeof api>[1]): Promise<triggerAutomationResponse> => {
 
-  return api<triggerAutomationApi010AutomationsSlugTriggerPostResponse>(getTriggerAutomationApi010AutomationsSlugTriggerPostUrl(slug),
+  return api<triggerAutomationResponse>(getTriggerAutomationUrl(slug),
   {
     ...options,
     method: 'POST'
@@ -594,11 +593,11 @@ export const triggerAutomationApi010AutomationsSlugTriggerPost = async (slug: st
 
 
 
-export const getTriggerAutomationApi010AutomationsSlugTriggerPostMutationOptions = <TError = HTTPValidationError,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof triggerAutomationApi010AutomationsSlugTriggerPost>>, TError,{slug: string}, TContext>, request?: SecondParameter<typeof api>}
-): UseMutationOptions<Awaited<ReturnType<typeof triggerAutomationApi010AutomationsSlugTriggerPost>>, TError,{slug: string}, TContext> => {
+export const getTriggerAutomationMutationOptions = <TError = HTTPValidationError,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof triggerAutomation>>, TError,{slug: string}, TContext>, request?: SecondParameter<typeof api>}
+): UseMutationOptions<Awaited<ReturnType<typeof triggerAutomation>>, TError,{slug: string}, TContext> => {
 
-const mutationKey = ['triggerAutomationApi010AutomationsSlugTriggerPost'];
+const mutationKey = ['triggerAutomation'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
@@ -608,10 +607,10 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof triggerAutomationApi010AutomationsSlugTriggerPost>>, {slug: string}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof triggerAutomation>>, {slug: string}> = (props) => {
           const {slug} = props ?? {};
 
-          return  triggerAutomationApi010AutomationsSlugTriggerPost(slug,requestOptions)
+          return  triggerAutomation(slug,requestOptions)
         }
 
 
@@ -621,44 +620,44 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
   return  { mutationFn, ...mutationOptions }}
 
-    export type TriggerAutomationApi010AutomationsSlugTriggerPostMutationResult = NonNullable<Awaited<ReturnType<typeof triggerAutomationApi010AutomationsSlugTriggerPost>>>
+    export type TriggerAutomationMutationResult = NonNullable<Awaited<ReturnType<typeof triggerAutomation>>>
 
-    export type TriggerAutomationApi010AutomationsSlugTriggerPostMutationError = HTTPValidationError
+    export type TriggerAutomationMutationError = HTTPValidationError
 
     /**
  * @summary Trigger Automation
  */
-export const useTriggerAutomationApi010AutomationsSlugTriggerPost = <TError = HTTPValidationError,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof triggerAutomationApi010AutomationsSlugTriggerPost>>, TError,{slug: string}, TContext>, request?: SecondParameter<typeof api>}
+export const useTriggerAutomation = <TError = HTTPValidationError,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof triggerAutomation>>, TError,{slug: string}, TContext>, request?: SecondParameter<typeof api>}
  , queryClient?: QueryClient): UseMutationResult<
-        Awaited<ReturnType<typeof triggerAutomationApi010AutomationsSlugTriggerPost>>,
+        Awaited<ReturnType<typeof triggerAutomation>>,
         TError,
         {slug: string},
         TContext
       > => {
-      return useMutation(getTriggerAutomationApi010AutomationsSlugTriggerPostMutationOptions(options), queryClient);
+      return useMutation(getTriggerAutomationMutationOptions(options), queryClient);
     }
 
-export type listAutomationExecutionsApi010AutomationsSlugExecutionsGetResponse200 = {
+export type listAutomationExecutionsResponse200 = {
   data: AutomationsHubDtoAutomationDtoExecutionResponse[]
   status: 200
 }
 
-export type listAutomationExecutionsApi010AutomationsSlugExecutionsGetResponse422 = {
+export type listAutomationExecutionsResponse422 = {
   data: HTTPValidationError
   status: 422
 }
 
-export type listAutomationExecutionsApi010AutomationsSlugExecutionsGetResponseSuccess = (listAutomationExecutionsApi010AutomationsSlugExecutionsGetResponse200) & {
+export type listAutomationExecutionsResponseSuccess = (listAutomationExecutionsResponse200) & {
   headers: Headers;
 };
-export type listAutomationExecutionsApi010AutomationsSlugExecutionsGetResponseError = (listAutomationExecutionsApi010AutomationsSlugExecutionsGetResponse422) & {
+export type listAutomationExecutionsResponseError = (listAutomationExecutionsResponse422) & {
   headers: Headers;
 };
 
-export type listAutomationExecutionsApi010AutomationsSlugExecutionsGetResponse = (listAutomationExecutionsApi010AutomationsSlugExecutionsGetResponseSuccess | listAutomationExecutionsApi010AutomationsSlugExecutionsGetResponseError)
+export type listAutomationExecutionsResponse = (listAutomationExecutionsResponseSuccess | listAutomationExecutionsResponseError)
 
-export const getListAutomationExecutionsApi010AutomationsSlugExecutionsGetUrl = (slug: string,) => {
+export const getListAutomationExecutionsUrl = (slug: string,) => {
 
 
 
@@ -670,9 +669,9 @@ export const getListAutomationExecutionsApi010AutomationsSlugExecutionsGetUrl = 
  * Histórico de execuções dessa automação.
  * @summary List Automation Executions
  */
-export const listAutomationExecutionsApi010AutomationsSlugExecutionsGet = async (slug: string, options?: Parameters<typeof api>[1]): Promise<listAutomationExecutionsApi010AutomationsSlugExecutionsGetResponse> => {
+export const listAutomationExecutions = async (slug: string, options?: Parameters<typeof api>[1]): Promise<listAutomationExecutionsResponse> => {
 
-  return api<listAutomationExecutionsApi010AutomationsSlugExecutionsGetResponse>(getListAutomationExecutionsApi010AutomationsSlugExecutionsGetUrl(slug),
+  return api<listAutomationExecutionsResponse>(getListAutomationExecutionsUrl(slug),
   {
     ...options,
     method: 'GET'
@@ -685,69 +684,69 @@ export const listAutomationExecutionsApi010AutomationsSlugExecutionsGet = async 
 
 
 
-export const getListAutomationExecutionsApi010AutomationsSlugExecutionsGetQueryKey = (slug: string,) => {
+export const getListAutomationExecutionsQueryKey = (slug: string,) => {
     return [
     `/api/0.1.0/automations/${slug}/executions`
     ] as const;
     }
 
 
-export const getListAutomationExecutionsApi010AutomationsSlugExecutionsGetQueryOptions = <TData = Awaited<ReturnType<typeof listAutomationExecutionsApi010AutomationsSlugExecutionsGet>>, TError = HTTPValidationError>(slug: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listAutomationExecutionsApi010AutomationsSlugExecutionsGet>>, TError, TData>>, request?: SecondParameter<typeof api>}
+export const getListAutomationExecutionsQueryOptions = <TData = Awaited<ReturnType<typeof listAutomationExecutions>>, TError = HTTPValidationError>(slug: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listAutomationExecutions>>, TError, TData>>, request?: SecondParameter<typeof api>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getListAutomationExecutionsApi010AutomationsSlugExecutionsGetQueryKey(slug);
+  const queryKey =  queryOptions?.queryKey ?? getListAutomationExecutionsQueryKey(slug);
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof listAutomationExecutionsApi010AutomationsSlugExecutionsGet>>> = ({ signal }) => listAutomationExecutionsApi010AutomationsSlugExecutionsGet(slug, { signal, ...requestOptions });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof listAutomationExecutions>>> = ({ signal }) => listAutomationExecutions(slug, { signal, ...requestOptions });
 
 
 
 
 
-   return  { queryKey, queryFn, enabled: slug !== null && slug !== undefined, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof listAutomationExecutionsApi010AutomationsSlugExecutionsGet>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+   return  { queryKey, queryFn, enabled: slug !== null && slug !== undefined, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof listAutomationExecutions>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
 }
 
-export type ListAutomationExecutionsApi010AutomationsSlugExecutionsGetQueryResult = NonNullable<Awaited<ReturnType<typeof listAutomationExecutionsApi010AutomationsSlugExecutionsGet>>>
-export type ListAutomationExecutionsApi010AutomationsSlugExecutionsGetQueryError = HTTPValidationError
+export type ListAutomationExecutionsQueryResult = NonNullable<Awaited<ReturnType<typeof listAutomationExecutions>>>
+export type ListAutomationExecutionsQueryError = HTTPValidationError
 
 
-export function useListAutomationExecutionsApi010AutomationsSlugExecutionsGet<TData = Awaited<ReturnType<typeof listAutomationExecutionsApi010AutomationsSlugExecutionsGet>>, TError = HTTPValidationError>(
- slug: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof listAutomationExecutionsApi010AutomationsSlugExecutionsGet>>, TError, TData>> & Pick<
+export function useListAutomationExecutions<TData = Awaited<ReturnType<typeof listAutomationExecutions>>, TError = HTTPValidationError>(
+ slug: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof listAutomationExecutions>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof listAutomationExecutionsApi010AutomationsSlugExecutionsGet>>,
+          Awaited<ReturnType<typeof listAutomationExecutions>>,
           TError,
-          Awaited<ReturnType<typeof listAutomationExecutionsApi010AutomationsSlugExecutionsGet>>
+          Awaited<ReturnType<typeof listAutomationExecutions>>
         > , 'initialData'
       >, request?: SecondParameter<typeof api>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useListAutomationExecutionsApi010AutomationsSlugExecutionsGet<TData = Awaited<ReturnType<typeof listAutomationExecutionsApi010AutomationsSlugExecutionsGet>>, TError = HTTPValidationError>(
- slug: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listAutomationExecutionsApi010AutomationsSlugExecutionsGet>>, TError, TData>> & Pick<
+export function useListAutomationExecutions<TData = Awaited<ReturnType<typeof listAutomationExecutions>>, TError = HTTPValidationError>(
+ slug: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listAutomationExecutions>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof listAutomationExecutionsApi010AutomationsSlugExecutionsGet>>,
+          Awaited<ReturnType<typeof listAutomationExecutions>>,
           TError,
-          Awaited<ReturnType<typeof listAutomationExecutionsApi010AutomationsSlugExecutionsGet>>
+          Awaited<ReturnType<typeof listAutomationExecutions>>
         > , 'initialData'
       >, request?: SecondParameter<typeof api>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useListAutomationExecutionsApi010AutomationsSlugExecutionsGet<TData = Awaited<ReturnType<typeof listAutomationExecutionsApi010AutomationsSlugExecutionsGet>>, TError = HTTPValidationError>(
- slug: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listAutomationExecutionsApi010AutomationsSlugExecutionsGet>>, TError, TData>>, request?: SecondParameter<typeof api>}
+export function useListAutomationExecutions<TData = Awaited<ReturnType<typeof listAutomationExecutions>>, TError = HTTPValidationError>(
+ slug: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listAutomationExecutions>>, TError, TData>>, request?: SecondParameter<typeof api>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
  * @summary List Automation Executions
  */
 
-export function useListAutomationExecutionsApi010AutomationsSlugExecutionsGet<TData = Awaited<ReturnType<typeof listAutomationExecutionsApi010AutomationsSlugExecutionsGet>>, TError = HTTPValidationError>(
- slug: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listAutomationExecutionsApi010AutomationsSlugExecutionsGet>>, TError, TData>>, request?: SecondParameter<typeof api>}
+export function useListAutomationExecutions<TData = Awaited<ReturnType<typeof listAutomationExecutions>>, TError = HTTPValidationError>(
+ slug: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listAutomationExecutions>>, TError, TData>>, request?: SecondParameter<typeof api>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
-  const queryOptions = getListAutomationExecutionsApi010AutomationsSlugExecutionsGetQueryOptions(slug,options)
+  const queryOptions = getListAutomationExecutionsQueryOptions(slug,options)
 
   const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
@@ -760,26 +759,26 @@ export function useListAutomationExecutionsApi010AutomationsSlugExecutionsGet<TD
 
 
 
-export type getAutomationStatsApi010AutomationsSlugStatsGetResponse200 = {
+export type getAutomationStatsResponse200 = {
   data: AutomationStatsResponse
   status: 200
 }
 
-export type getAutomationStatsApi010AutomationsSlugStatsGetResponse422 = {
+export type getAutomationStatsResponse422 = {
   data: HTTPValidationError
   status: 422
 }
 
-export type getAutomationStatsApi010AutomationsSlugStatsGetResponseSuccess = (getAutomationStatsApi010AutomationsSlugStatsGetResponse200) & {
+export type getAutomationStatsResponseSuccess = (getAutomationStatsResponse200) & {
   headers: Headers;
 };
-export type getAutomationStatsApi010AutomationsSlugStatsGetResponseError = (getAutomationStatsApi010AutomationsSlugStatsGetResponse422) & {
+export type getAutomationStatsResponseError = (getAutomationStatsResponse422) & {
   headers: Headers;
 };
 
-export type getAutomationStatsApi010AutomationsSlugStatsGetResponse = (getAutomationStatsApi010AutomationsSlugStatsGetResponseSuccess | getAutomationStatsApi010AutomationsSlugStatsGetResponseError)
+export type getAutomationStatsResponse = (getAutomationStatsResponseSuccess | getAutomationStatsResponseError)
 
-export const getGetAutomationStatsApi010AutomationsSlugStatsGetUrl = (slug: string,) => {
+export const getGetAutomationStatsUrl = (slug: string,) => {
 
 
 
@@ -791,9 +790,9 @@ export const getGetAutomationStatsApi010AutomationsSlugStatsGetUrl = (slug: stri
  * Taxa de sucesso e duração média da automação.
  * @summary Get Automation Stats
  */
-export const getAutomationStatsApi010AutomationsSlugStatsGet = async (slug: string, options?: Parameters<typeof api>[1]): Promise<getAutomationStatsApi010AutomationsSlugStatsGetResponse> => {
+export const getAutomationStats = async (slug: string, options?: Parameters<typeof api>[1]): Promise<getAutomationStatsResponse> => {
 
-  return api<getAutomationStatsApi010AutomationsSlugStatsGetResponse>(getGetAutomationStatsApi010AutomationsSlugStatsGetUrl(slug),
+  return api<getAutomationStatsResponse>(getGetAutomationStatsUrl(slug),
   {
     ...options,
     method: 'GET'
@@ -806,69 +805,69 @@ export const getAutomationStatsApi010AutomationsSlugStatsGet = async (slug: stri
 
 
 
-export const getGetAutomationStatsApi010AutomationsSlugStatsGetQueryKey = (slug: string,) => {
+export const getGetAutomationStatsQueryKey = (slug: string,) => {
     return [
     `/api/0.1.0/automations/${slug}/stats`
     ] as const;
     }
 
 
-export const getGetAutomationStatsApi010AutomationsSlugStatsGetQueryOptions = <TData = Awaited<ReturnType<typeof getAutomationStatsApi010AutomationsSlugStatsGet>>, TError = HTTPValidationError>(slug: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAutomationStatsApi010AutomationsSlugStatsGet>>, TError, TData>>, request?: SecondParameter<typeof api>}
+export const getGetAutomationStatsQueryOptions = <TData = Awaited<ReturnType<typeof getAutomationStats>>, TError = HTTPValidationError>(slug: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAutomationStats>>, TError, TData>>, request?: SecondParameter<typeof api>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getGetAutomationStatsApi010AutomationsSlugStatsGetQueryKey(slug);
+  const queryKey =  queryOptions?.queryKey ?? getGetAutomationStatsQueryKey(slug);
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getAutomationStatsApi010AutomationsSlugStatsGet>>> = ({ signal }) => getAutomationStatsApi010AutomationsSlugStatsGet(slug, { signal, ...requestOptions });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getAutomationStats>>> = ({ signal }) => getAutomationStats(slug, { signal, ...requestOptions });
 
 
 
 
 
-   return  { queryKey, queryFn, enabled: slug !== null && slug !== undefined, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getAutomationStatsApi010AutomationsSlugStatsGet>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+   return  { queryKey, queryFn, enabled: slug !== null && slug !== undefined, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getAutomationStats>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
 }
 
-export type GetAutomationStatsApi010AutomationsSlugStatsGetQueryResult = NonNullable<Awaited<ReturnType<typeof getAutomationStatsApi010AutomationsSlugStatsGet>>>
-export type GetAutomationStatsApi010AutomationsSlugStatsGetQueryError = HTTPValidationError
+export type GetAutomationStatsQueryResult = NonNullable<Awaited<ReturnType<typeof getAutomationStats>>>
+export type GetAutomationStatsQueryError = HTTPValidationError
 
 
-export function useGetAutomationStatsApi010AutomationsSlugStatsGet<TData = Awaited<ReturnType<typeof getAutomationStatsApi010AutomationsSlugStatsGet>>, TError = HTTPValidationError>(
- slug: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAutomationStatsApi010AutomationsSlugStatsGet>>, TError, TData>> & Pick<
+export function useGetAutomationStats<TData = Awaited<ReturnType<typeof getAutomationStats>>, TError = HTTPValidationError>(
+ slug: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAutomationStats>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getAutomationStatsApi010AutomationsSlugStatsGet>>,
+          Awaited<ReturnType<typeof getAutomationStats>>,
           TError,
-          Awaited<ReturnType<typeof getAutomationStatsApi010AutomationsSlugStatsGet>>
+          Awaited<ReturnType<typeof getAutomationStats>>
         > , 'initialData'
       >, request?: SecondParameter<typeof api>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetAutomationStatsApi010AutomationsSlugStatsGet<TData = Awaited<ReturnType<typeof getAutomationStatsApi010AutomationsSlugStatsGet>>, TError = HTTPValidationError>(
- slug: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAutomationStatsApi010AutomationsSlugStatsGet>>, TError, TData>> & Pick<
+export function useGetAutomationStats<TData = Awaited<ReturnType<typeof getAutomationStats>>, TError = HTTPValidationError>(
+ slug: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAutomationStats>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getAutomationStatsApi010AutomationsSlugStatsGet>>,
+          Awaited<ReturnType<typeof getAutomationStats>>,
           TError,
-          Awaited<ReturnType<typeof getAutomationStatsApi010AutomationsSlugStatsGet>>
+          Awaited<ReturnType<typeof getAutomationStats>>
         > , 'initialData'
       >, request?: SecondParameter<typeof api>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetAutomationStatsApi010AutomationsSlugStatsGet<TData = Awaited<ReturnType<typeof getAutomationStatsApi010AutomationsSlugStatsGet>>, TError = HTTPValidationError>(
- slug: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAutomationStatsApi010AutomationsSlugStatsGet>>, TError, TData>>, request?: SecondParameter<typeof api>}
+export function useGetAutomationStats<TData = Awaited<ReturnType<typeof getAutomationStats>>, TError = HTTPValidationError>(
+ slug: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAutomationStats>>, TError, TData>>, request?: SecondParameter<typeof api>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
  * @summary Get Automation Stats
  */
 
-export function useGetAutomationStatsApi010AutomationsSlugStatsGet<TData = Awaited<ReturnType<typeof getAutomationStatsApi010AutomationsSlugStatsGet>>, TError = HTTPValidationError>(
- slug: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAutomationStatsApi010AutomationsSlugStatsGet>>, TError, TData>>, request?: SecondParameter<typeof api>}
+export function useGetAutomationStats<TData = Awaited<ReturnType<typeof getAutomationStats>>, TError = HTTPValidationError>(
+ slug: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAutomationStats>>, TError, TData>>, request?: SecondParameter<typeof api>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
-  const queryOptions = getGetAutomationStatsApi010AutomationsSlugStatsGetQueryOptions(slug,options)
+  const queryOptions = getGetAutomationStatsQueryOptions(slug,options)
 
   const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
@@ -881,26 +880,26 @@ export function useGetAutomationStatsApi010AutomationsSlugStatsGet<TData = Await
 
 
 
-export type getExecutionDetailApi010ExecutionsExecutionIdGetResponse200 = {
+export type getExecutionDetailResponse200 = {
   data: AutomationsHubDtoExecutionDtoExecutionResponse
   status: 200
 }
 
-export type getExecutionDetailApi010ExecutionsExecutionIdGetResponse422 = {
+export type getExecutionDetailResponse422 = {
   data: HTTPValidationError
   status: 422
 }
 
-export type getExecutionDetailApi010ExecutionsExecutionIdGetResponseSuccess = (getExecutionDetailApi010ExecutionsExecutionIdGetResponse200) & {
+export type getExecutionDetailResponseSuccess = (getExecutionDetailResponse200) & {
   headers: Headers;
 };
-export type getExecutionDetailApi010ExecutionsExecutionIdGetResponseError = (getExecutionDetailApi010ExecutionsExecutionIdGetResponse422) & {
+export type getExecutionDetailResponseError = (getExecutionDetailResponse422) & {
   headers: Headers;
 };
 
-export type getExecutionDetailApi010ExecutionsExecutionIdGetResponse = (getExecutionDetailApi010ExecutionsExecutionIdGetResponseSuccess | getExecutionDetailApi010ExecutionsExecutionIdGetResponseError)
+export type getExecutionDetailResponse = (getExecutionDetailResponseSuccess | getExecutionDetailResponseError)
 
-export const getGetExecutionDetailApi010ExecutionsExecutionIdGetUrl = (executionId: number,) => {
+export const getGetExecutionDetailUrl = (executionId: number,) => {
 
 
 
@@ -912,9 +911,9 @@ export const getGetExecutionDetailApi010ExecutionsExecutionIdGetUrl = (execution
  * Detalhe de uma execução (com steps).
  * @summary Get Execution Detail
  */
-export const getExecutionDetailApi010ExecutionsExecutionIdGet = async (executionId: number, options?: Parameters<typeof api>[1]): Promise<getExecutionDetailApi010ExecutionsExecutionIdGetResponse> => {
+export const getExecutionDetail = async (executionId: number, options?: Parameters<typeof api>[1]): Promise<getExecutionDetailResponse> => {
 
-  return api<getExecutionDetailApi010ExecutionsExecutionIdGetResponse>(getGetExecutionDetailApi010ExecutionsExecutionIdGetUrl(executionId),
+  return api<getExecutionDetailResponse>(getGetExecutionDetailUrl(executionId),
   {
     ...options,
     method: 'GET'
@@ -927,69 +926,69 @@ export const getExecutionDetailApi010ExecutionsExecutionIdGet = async (execution
 
 
 
-export const getGetExecutionDetailApi010ExecutionsExecutionIdGetQueryKey = (executionId: number,) => {
+export const getGetExecutionDetailQueryKey = (executionId: number,) => {
     return [
     `/api/0.1.0/executions/${executionId}`
     ] as const;
     }
 
 
-export const getGetExecutionDetailApi010ExecutionsExecutionIdGetQueryOptions = <TData = Awaited<ReturnType<typeof getExecutionDetailApi010ExecutionsExecutionIdGet>>, TError = HTTPValidationError>(executionId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getExecutionDetailApi010ExecutionsExecutionIdGet>>, TError, TData>>, request?: SecondParameter<typeof api>}
+export const getGetExecutionDetailQueryOptions = <TData = Awaited<ReturnType<typeof getExecutionDetail>>, TError = HTTPValidationError>(executionId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getExecutionDetail>>, TError, TData>>, request?: SecondParameter<typeof api>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getGetExecutionDetailApi010ExecutionsExecutionIdGetQueryKey(executionId);
+  const queryKey =  queryOptions?.queryKey ?? getGetExecutionDetailQueryKey(executionId);
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getExecutionDetailApi010ExecutionsExecutionIdGet>>> = ({ signal }) => getExecutionDetailApi010ExecutionsExecutionIdGet(executionId, { signal, ...requestOptions });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getExecutionDetail>>> = ({ signal }) => getExecutionDetail(executionId, { signal, ...requestOptions });
 
 
 
 
 
-   return  { queryKey, queryFn, enabled: executionId !== null && executionId !== undefined, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getExecutionDetailApi010ExecutionsExecutionIdGet>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+   return  { queryKey, queryFn, enabled: executionId !== null && executionId !== undefined, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getExecutionDetail>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
 }
 
-export type GetExecutionDetailApi010ExecutionsExecutionIdGetQueryResult = NonNullable<Awaited<ReturnType<typeof getExecutionDetailApi010ExecutionsExecutionIdGet>>>
-export type GetExecutionDetailApi010ExecutionsExecutionIdGetQueryError = HTTPValidationError
+export type GetExecutionDetailQueryResult = NonNullable<Awaited<ReturnType<typeof getExecutionDetail>>>
+export type GetExecutionDetailQueryError = HTTPValidationError
 
 
-export function useGetExecutionDetailApi010ExecutionsExecutionIdGet<TData = Awaited<ReturnType<typeof getExecutionDetailApi010ExecutionsExecutionIdGet>>, TError = HTTPValidationError>(
- executionId: number, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getExecutionDetailApi010ExecutionsExecutionIdGet>>, TError, TData>> & Pick<
+export function useGetExecutionDetail<TData = Awaited<ReturnType<typeof getExecutionDetail>>, TError = HTTPValidationError>(
+ executionId: number, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getExecutionDetail>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getExecutionDetailApi010ExecutionsExecutionIdGet>>,
+          Awaited<ReturnType<typeof getExecutionDetail>>,
           TError,
-          Awaited<ReturnType<typeof getExecutionDetailApi010ExecutionsExecutionIdGet>>
+          Awaited<ReturnType<typeof getExecutionDetail>>
         > , 'initialData'
       >, request?: SecondParameter<typeof api>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetExecutionDetailApi010ExecutionsExecutionIdGet<TData = Awaited<ReturnType<typeof getExecutionDetailApi010ExecutionsExecutionIdGet>>, TError = HTTPValidationError>(
- executionId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getExecutionDetailApi010ExecutionsExecutionIdGet>>, TError, TData>> & Pick<
+export function useGetExecutionDetail<TData = Awaited<ReturnType<typeof getExecutionDetail>>, TError = HTTPValidationError>(
+ executionId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getExecutionDetail>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getExecutionDetailApi010ExecutionsExecutionIdGet>>,
+          Awaited<ReturnType<typeof getExecutionDetail>>,
           TError,
-          Awaited<ReturnType<typeof getExecutionDetailApi010ExecutionsExecutionIdGet>>
+          Awaited<ReturnType<typeof getExecutionDetail>>
         > , 'initialData'
       >, request?: SecondParameter<typeof api>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetExecutionDetailApi010ExecutionsExecutionIdGet<TData = Awaited<ReturnType<typeof getExecutionDetailApi010ExecutionsExecutionIdGet>>, TError = HTTPValidationError>(
- executionId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getExecutionDetailApi010ExecutionsExecutionIdGet>>, TError, TData>>, request?: SecondParameter<typeof api>}
+export function useGetExecutionDetail<TData = Awaited<ReturnType<typeof getExecutionDetail>>, TError = HTTPValidationError>(
+ executionId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getExecutionDetail>>, TError, TData>>, request?: SecondParameter<typeof api>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
  * @summary Get Execution Detail
  */
 
-export function useGetExecutionDetailApi010ExecutionsExecutionIdGet<TData = Awaited<ReturnType<typeof getExecutionDetailApi010ExecutionsExecutionIdGet>>, TError = HTTPValidationError>(
- executionId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getExecutionDetailApi010ExecutionsExecutionIdGet>>, TError, TData>>, request?: SecondParameter<typeof api>}
+export function useGetExecutionDetail<TData = Awaited<ReturnType<typeof getExecutionDetail>>, TError = HTTPValidationError>(
+ executionId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getExecutionDetail>>, TError, TData>>, request?: SecondParameter<typeof api>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
-  const queryOptions = getGetExecutionDetailApi010ExecutionsExecutionIdGetQueryOptions(executionId,options)
+  const queryOptions = getGetExecutionDetailQueryOptions(executionId,options)
 
   const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
@@ -1002,26 +1001,26 @@ export function useGetExecutionDetailApi010ExecutionsExecutionIdGet<TData = Awai
 
 
 
-export type getExecutionStepsApi010ExecutionsExecutionIdStepsGetResponse200 = {
+export type getExecutionStepsResponse200 = {
   data: AutomationsHubDtoExecutionDtoStepResponse[]
   status: 200
 }
 
-export type getExecutionStepsApi010ExecutionsExecutionIdStepsGetResponse422 = {
+export type getExecutionStepsResponse422 = {
   data: HTTPValidationError
   status: 422
 }
 
-export type getExecutionStepsApi010ExecutionsExecutionIdStepsGetResponseSuccess = (getExecutionStepsApi010ExecutionsExecutionIdStepsGetResponse200) & {
+export type getExecutionStepsResponseSuccess = (getExecutionStepsResponse200) & {
   headers: Headers;
 };
-export type getExecutionStepsApi010ExecutionsExecutionIdStepsGetResponseError = (getExecutionStepsApi010ExecutionsExecutionIdStepsGetResponse422) & {
+export type getExecutionStepsResponseError = (getExecutionStepsResponse422) & {
   headers: Headers;
 };
 
-export type getExecutionStepsApi010ExecutionsExecutionIdStepsGetResponse = (getExecutionStepsApi010ExecutionsExecutionIdStepsGetResponseSuccess | getExecutionStepsApi010ExecutionsExecutionIdStepsGetResponseError)
+export type getExecutionStepsResponse = (getExecutionStepsResponseSuccess | getExecutionStepsResponseError)
 
-export const getGetExecutionStepsApi010ExecutionsExecutionIdStepsGetUrl = (executionId: number,) => {
+export const getGetExecutionStepsUrl = (executionId: number,) => {
 
 
 
@@ -1033,9 +1032,9 @@ export const getGetExecutionStepsApi010ExecutionsExecutionIdStepsGetUrl = (execu
  * Só os steps dessa execução.
  * @summary Get Execution Steps
  */
-export const getExecutionStepsApi010ExecutionsExecutionIdStepsGet = async (executionId: number, options?: Parameters<typeof api>[1]): Promise<getExecutionStepsApi010ExecutionsExecutionIdStepsGetResponse> => {
+export const getExecutionSteps = async (executionId: number, options?: Parameters<typeof api>[1]): Promise<getExecutionStepsResponse> => {
 
-  return api<getExecutionStepsApi010ExecutionsExecutionIdStepsGetResponse>(getGetExecutionStepsApi010ExecutionsExecutionIdStepsGetUrl(executionId),
+  return api<getExecutionStepsResponse>(getGetExecutionStepsUrl(executionId),
   {
     ...options,
     method: 'GET'
@@ -1048,69 +1047,69 @@ export const getExecutionStepsApi010ExecutionsExecutionIdStepsGet = async (execu
 
 
 
-export const getGetExecutionStepsApi010ExecutionsExecutionIdStepsGetQueryKey = (executionId: number,) => {
+export const getGetExecutionStepsQueryKey = (executionId: number,) => {
     return [
     `/api/0.1.0/executions/${executionId}/steps`
     ] as const;
     }
 
 
-export const getGetExecutionStepsApi010ExecutionsExecutionIdStepsGetQueryOptions = <TData = Awaited<ReturnType<typeof getExecutionStepsApi010ExecutionsExecutionIdStepsGet>>, TError = HTTPValidationError>(executionId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getExecutionStepsApi010ExecutionsExecutionIdStepsGet>>, TError, TData>>, request?: SecondParameter<typeof api>}
+export const getGetExecutionStepsQueryOptions = <TData = Awaited<ReturnType<typeof getExecutionSteps>>, TError = HTTPValidationError>(executionId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getExecutionSteps>>, TError, TData>>, request?: SecondParameter<typeof api>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getGetExecutionStepsApi010ExecutionsExecutionIdStepsGetQueryKey(executionId);
+  const queryKey =  queryOptions?.queryKey ?? getGetExecutionStepsQueryKey(executionId);
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getExecutionStepsApi010ExecutionsExecutionIdStepsGet>>> = ({ signal }) => getExecutionStepsApi010ExecutionsExecutionIdStepsGet(executionId, { signal, ...requestOptions });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getExecutionSteps>>> = ({ signal }) => getExecutionSteps(executionId, { signal, ...requestOptions });
 
 
 
 
 
-   return  { queryKey, queryFn, enabled: executionId !== null && executionId !== undefined, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getExecutionStepsApi010ExecutionsExecutionIdStepsGet>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+   return  { queryKey, queryFn, enabled: executionId !== null && executionId !== undefined, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getExecutionSteps>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
 }
 
-export type GetExecutionStepsApi010ExecutionsExecutionIdStepsGetQueryResult = NonNullable<Awaited<ReturnType<typeof getExecutionStepsApi010ExecutionsExecutionIdStepsGet>>>
-export type GetExecutionStepsApi010ExecutionsExecutionIdStepsGetQueryError = HTTPValidationError
+export type GetExecutionStepsQueryResult = NonNullable<Awaited<ReturnType<typeof getExecutionSteps>>>
+export type GetExecutionStepsQueryError = HTTPValidationError
 
 
-export function useGetExecutionStepsApi010ExecutionsExecutionIdStepsGet<TData = Awaited<ReturnType<typeof getExecutionStepsApi010ExecutionsExecutionIdStepsGet>>, TError = HTTPValidationError>(
- executionId: number, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getExecutionStepsApi010ExecutionsExecutionIdStepsGet>>, TError, TData>> & Pick<
+export function useGetExecutionSteps<TData = Awaited<ReturnType<typeof getExecutionSteps>>, TError = HTTPValidationError>(
+ executionId: number, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getExecutionSteps>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getExecutionStepsApi010ExecutionsExecutionIdStepsGet>>,
+          Awaited<ReturnType<typeof getExecutionSteps>>,
           TError,
-          Awaited<ReturnType<typeof getExecutionStepsApi010ExecutionsExecutionIdStepsGet>>
+          Awaited<ReturnType<typeof getExecutionSteps>>
         > , 'initialData'
       >, request?: SecondParameter<typeof api>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetExecutionStepsApi010ExecutionsExecutionIdStepsGet<TData = Awaited<ReturnType<typeof getExecutionStepsApi010ExecutionsExecutionIdStepsGet>>, TError = HTTPValidationError>(
- executionId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getExecutionStepsApi010ExecutionsExecutionIdStepsGet>>, TError, TData>> & Pick<
+export function useGetExecutionSteps<TData = Awaited<ReturnType<typeof getExecutionSteps>>, TError = HTTPValidationError>(
+ executionId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getExecutionSteps>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getExecutionStepsApi010ExecutionsExecutionIdStepsGet>>,
+          Awaited<ReturnType<typeof getExecutionSteps>>,
           TError,
-          Awaited<ReturnType<typeof getExecutionStepsApi010ExecutionsExecutionIdStepsGet>>
+          Awaited<ReturnType<typeof getExecutionSteps>>
         > , 'initialData'
       >, request?: SecondParameter<typeof api>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetExecutionStepsApi010ExecutionsExecutionIdStepsGet<TData = Awaited<ReturnType<typeof getExecutionStepsApi010ExecutionsExecutionIdStepsGet>>, TError = HTTPValidationError>(
- executionId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getExecutionStepsApi010ExecutionsExecutionIdStepsGet>>, TError, TData>>, request?: SecondParameter<typeof api>}
+export function useGetExecutionSteps<TData = Awaited<ReturnType<typeof getExecutionSteps>>, TError = HTTPValidationError>(
+ executionId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getExecutionSteps>>, TError, TData>>, request?: SecondParameter<typeof api>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
  * @summary Get Execution Steps
  */
 
-export function useGetExecutionStepsApi010ExecutionsExecutionIdStepsGet<TData = Awaited<ReturnType<typeof getExecutionStepsApi010ExecutionsExecutionIdStepsGet>>, TError = HTTPValidationError>(
- executionId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getExecutionStepsApi010ExecutionsExecutionIdStepsGet>>, TError, TData>>, request?: SecondParameter<typeof api>}
+export function useGetExecutionSteps<TData = Awaited<ReturnType<typeof getExecutionSteps>>, TError = HTTPValidationError>(
+ executionId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getExecutionSteps>>, TError, TData>>, request?: SecondParameter<typeof api>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
-  const queryOptions = getGetExecutionStepsApi010ExecutionsExecutionIdStepsGetQueryOptions(executionId,options)
+  const queryOptions = getGetExecutionStepsQueryOptions(executionId,options)
 
   const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
@@ -1123,26 +1122,26 @@ export function useGetExecutionStepsApi010ExecutionsExecutionIdStepsGet<TData = 
 
 
 
-export type listStepMetricsApi010ExecutionsStepsStepIdMetricsGetResponse200 = {
+export type listStepMetricsResponse200 = {
   data: MetricResponse[]
   status: 200
 }
 
-export type listStepMetricsApi010ExecutionsStepsStepIdMetricsGetResponse422 = {
+export type listStepMetricsResponse422 = {
   data: HTTPValidationError
   status: 422
 }
 
-export type listStepMetricsApi010ExecutionsStepsStepIdMetricsGetResponseSuccess = (listStepMetricsApi010ExecutionsStepsStepIdMetricsGetResponse200) & {
+export type listStepMetricsResponseSuccess = (listStepMetricsResponse200) & {
   headers: Headers;
 };
-export type listStepMetricsApi010ExecutionsStepsStepIdMetricsGetResponseError = (listStepMetricsApi010ExecutionsStepsStepIdMetricsGetResponse422) & {
+export type listStepMetricsResponseError = (listStepMetricsResponse422) & {
   headers: Headers;
 };
 
-export type listStepMetricsApi010ExecutionsStepsStepIdMetricsGetResponse = (listStepMetricsApi010ExecutionsStepsStepIdMetricsGetResponseSuccess | listStepMetricsApi010ExecutionsStepsStepIdMetricsGetResponseError)
+export type listStepMetricsResponse = (listStepMetricsResponseSuccess | listStepMetricsResponseError)
 
-export const getListStepMetricsApi010ExecutionsStepsStepIdMetricsGetUrl = (stepId: number,) => {
+export const getListStepMetricsUrl = (stepId: number,) => {
 
 
 
@@ -1154,9 +1153,9 @@ export const getListStepMetricsApi010ExecutionsStepsStepIdMetricsGetUrl = (stepI
  * Lista as métricas de um step.
  * @summary List Step Metrics
  */
-export const listStepMetricsApi010ExecutionsStepsStepIdMetricsGet = async (stepId: number, options?: Parameters<typeof api>[1]): Promise<listStepMetricsApi010ExecutionsStepsStepIdMetricsGetResponse> => {
+export const listStepMetrics = async (stepId: number, options?: Parameters<typeof api>[1]): Promise<listStepMetricsResponse> => {
 
-  return api<listStepMetricsApi010ExecutionsStepsStepIdMetricsGetResponse>(getListStepMetricsApi010ExecutionsStepsStepIdMetricsGetUrl(stepId),
+  return api<listStepMetricsResponse>(getListStepMetricsUrl(stepId),
   {
     ...options,
     method: 'GET'
@@ -1169,69 +1168,69 @@ export const listStepMetricsApi010ExecutionsStepsStepIdMetricsGet = async (stepI
 
 
 
-export const getListStepMetricsApi010ExecutionsStepsStepIdMetricsGetQueryKey = (stepId: number,) => {
+export const getListStepMetricsQueryKey = (stepId: number,) => {
     return [
     `/api/0.1.0/executions/steps/${stepId}/metrics`
     ] as const;
     }
 
 
-export const getListStepMetricsApi010ExecutionsStepsStepIdMetricsGetQueryOptions = <TData = Awaited<ReturnType<typeof listStepMetricsApi010ExecutionsStepsStepIdMetricsGet>>, TError = HTTPValidationError>(stepId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listStepMetricsApi010ExecutionsStepsStepIdMetricsGet>>, TError, TData>>, request?: SecondParameter<typeof api>}
+export const getListStepMetricsQueryOptions = <TData = Awaited<ReturnType<typeof listStepMetrics>>, TError = HTTPValidationError>(stepId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listStepMetrics>>, TError, TData>>, request?: SecondParameter<typeof api>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getListStepMetricsApi010ExecutionsStepsStepIdMetricsGetQueryKey(stepId);
+  const queryKey =  queryOptions?.queryKey ?? getListStepMetricsQueryKey(stepId);
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof listStepMetricsApi010ExecutionsStepsStepIdMetricsGet>>> = ({ signal }) => listStepMetricsApi010ExecutionsStepsStepIdMetricsGet(stepId, { signal, ...requestOptions });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof listStepMetrics>>> = ({ signal }) => listStepMetrics(stepId, { signal, ...requestOptions });
 
 
 
 
 
-   return  { queryKey, queryFn, enabled: stepId !== null && stepId !== undefined, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof listStepMetricsApi010ExecutionsStepsStepIdMetricsGet>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+   return  { queryKey, queryFn, enabled: stepId !== null && stepId !== undefined, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof listStepMetrics>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
 }
 
-export type ListStepMetricsApi010ExecutionsStepsStepIdMetricsGetQueryResult = NonNullable<Awaited<ReturnType<typeof listStepMetricsApi010ExecutionsStepsStepIdMetricsGet>>>
-export type ListStepMetricsApi010ExecutionsStepsStepIdMetricsGetQueryError = HTTPValidationError
+export type ListStepMetricsQueryResult = NonNullable<Awaited<ReturnType<typeof listStepMetrics>>>
+export type ListStepMetricsQueryError = HTTPValidationError
 
 
-export function useListStepMetricsApi010ExecutionsStepsStepIdMetricsGet<TData = Awaited<ReturnType<typeof listStepMetricsApi010ExecutionsStepsStepIdMetricsGet>>, TError = HTTPValidationError>(
- stepId: number, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof listStepMetricsApi010ExecutionsStepsStepIdMetricsGet>>, TError, TData>> & Pick<
+export function useListStepMetrics<TData = Awaited<ReturnType<typeof listStepMetrics>>, TError = HTTPValidationError>(
+ stepId: number, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof listStepMetrics>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof listStepMetricsApi010ExecutionsStepsStepIdMetricsGet>>,
+          Awaited<ReturnType<typeof listStepMetrics>>,
           TError,
-          Awaited<ReturnType<typeof listStepMetricsApi010ExecutionsStepsStepIdMetricsGet>>
+          Awaited<ReturnType<typeof listStepMetrics>>
         > , 'initialData'
       >, request?: SecondParameter<typeof api>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useListStepMetricsApi010ExecutionsStepsStepIdMetricsGet<TData = Awaited<ReturnType<typeof listStepMetricsApi010ExecutionsStepsStepIdMetricsGet>>, TError = HTTPValidationError>(
- stepId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listStepMetricsApi010ExecutionsStepsStepIdMetricsGet>>, TError, TData>> & Pick<
+export function useListStepMetrics<TData = Awaited<ReturnType<typeof listStepMetrics>>, TError = HTTPValidationError>(
+ stepId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listStepMetrics>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof listStepMetricsApi010ExecutionsStepsStepIdMetricsGet>>,
+          Awaited<ReturnType<typeof listStepMetrics>>,
           TError,
-          Awaited<ReturnType<typeof listStepMetricsApi010ExecutionsStepsStepIdMetricsGet>>
+          Awaited<ReturnType<typeof listStepMetrics>>
         > , 'initialData'
       >, request?: SecondParameter<typeof api>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useListStepMetricsApi010ExecutionsStepsStepIdMetricsGet<TData = Awaited<ReturnType<typeof listStepMetricsApi010ExecutionsStepsStepIdMetricsGet>>, TError = HTTPValidationError>(
- stepId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listStepMetricsApi010ExecutionsStepsStepIdMetricsGet>>, TError, TData>>, request?: SecondParameter<typeof api>}
+export function useListStepMetrics<TData = Awaited<ReturnType<typeof listStepMetrics>>, TError = HTTPValidationError>(
+ stepId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listStepMetrics>>, TError, TData>>, request?: SecondParameter<typeof api>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
  * @summary List Step Metrics
  */
 
-export function useListStepMetricsApi010ExecutionsStepsStepIdMetricsGet<TData = Awaited<ReturnType<typeof listStepMetricsApi010ExecutionsStepsStepIdMetricsGet>>, TError = HTTPValidationError>(
- stepId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listStepMetricsApi010ExecutionsStepsStepIdMetricsGet>>, TError, TData>>, request?: SecondParameter<typeof api>}
+export function useListStepMetrics<TData = Awaited<ReturnType<typeof listStepMetrics>>, TError = HTTPValidationError>(
+ stepId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listStepMetrics>>, TError, TData>>, request?: SecondParameter<typeof api>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
-  const queryOptions = getListStepMetricsApi010ExecutionsStepsStepIdMetricsGetQueryOptions(stepId,options)
+  const queryOptions = getListStepMetricsQueryOptions(stepId,options)
 
   const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
@@ -1244,26 +1243,26 @@ export function useListStepMetricsApi010ExecutionsStepsStepIdMetricsGet<TData = 
 
 
 
-export type getMetricApi010ExecutionsMetricsMetricIdGetResponse200 = {
+export type getMetricResponse200 = {
   data: MetricResponse
   status: 200
 }
 
-export type getMetricApi010ExecutionsMetricsMetricIdGetResponse422 = {
+export type getMetricResponse422 = {
   data: HTTPValidationError
   status: 422
 }
 
-export type getMetricApi010ExecutionsMetricsMetricIdGetResponseSuccess = (getMetricApi010ExecutionsMetricsMetricIdGetResponse200) & {
+export type getMetricResponseSuccess = (getMetricResponse200) & {
   headers: Headers;
 };
-export type getMetricApi010ExecutionsMetricsMetricIdGetResponseError = (getMetricApi010ExecutionsMetricsMetricIdGetResponse422) & {
+export type getMetricResponseError = (getMetricResponse422) & {
   headers: Headers;
 };
 
-export type getMetricApi010ExecutionsMetricsMetricIdGetResponse = (getMetricApi010ExecutionsMetricsMetricIdGetResponseSuccess | getMetricApi010ExecutionsMetricsMetricIdGetResponseError)
+export type getMetricResponse = (getMetricResponseSuccess | getMetricResponseError)
 
-export const getGetMetricApi010ExecutionsMetricsMetricIdGetUrl = (metricId: number,) => {
+export const getGetMetricUrl = (metricId: number,) => {
 
 
 
@@ -1275,9 +1274,9 @@ export const getGetMetricApi010ExecutionsMetricsMetricIdGetUrl = (metricId: numb
  * Retorna uma métrica.
  * @summary Get Metric
  */
-export const getMetricApi010ExecutionsMetricsMetricIdGet = async (metricId: number, options?: Parameters<typeof api>[1]): Promise<getMetricApi010ExecutionsMetricsMetricIdGetResponse> => {
+export const getMetric = async (metricId: number, options?: Parameters<typeof api>[1]): Promise<getMetricResponse> => {
 
-  return api<getMetricApi010ExecutionsMetricsMetricIdGetResponse>(getGetMetricApi010ExecutionsMetricsMetricIdGetUrl(metricId),
+  return api<getMetricResponse>(getGetMetricUrl(metricId),
   {
     ...options,
     method: 'GET'
@@ -1290,69 +1289,69 @@ export const getMetricApi010ExecutionsMetricsMetricIdGet = async (metricId: numb
 
 
 
-export const getGetMetricApi010ExecutionsMetricsMetricIdGetQueryKey = (metricId: number,) => {
+export const getGetMetricQueryKey = (metricId: number,) => {
     return [
     `/api/0.1.0/executions/metrics/${metricId}`
     ] as const;
     }
 
 
-export const getGetMetricApi010ExecutionsMetricsMetricIdGetQueryOptions = <TData = Awaited<ReturnType<typeof getMetricApi010ExecutionsMetricsMetricIdGet>>, TError = HTTPValidationError>(metricId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMetricApi010ExecutionsMetricsMetricIdGet>>, TError, TData>>, request?: SecondParameter<typeof api>}
+export const getGetMetricQueryOptions = <TData = Awaited<ReturnType<typeof getMetric>>, TError = HTTPValidationError>(metricId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMetric>>, TError, TData>>, request?: SecondParameter<typeof api>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getGetMetricApi010ExecutionsMetricsMetricIdGetQueryKey(metricId);
+  const queryKey =  queryOptions?.queryKey ?? getGetMetricQueryKey(metricId);
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getMetricApi010ExecutionsMetricsMetricIdGet>>> = ({ signal }) => getMetricApi010ExecutionsMetricsMetricIdGet(metricId, { signal, ...requestOptions });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getMetric>>> = ({ signal }) => getMetric(metricId, { signal, ...requestOptions });
 
 
 
 
 
-   return  { queryKey, queryFn, enabled: metricId !== null && metricId !== undefined, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getMetricApi010ExecutionsMetricsMetricIdGet>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+   return  { queryKey, queryFn, enabled: metricId !== null && metricId !== undefined, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getMetric>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
 }
 
-export type GetMetricApi010ExecutionsMetricsMetricIdGetQueryResult = NonNullable<Awaited<ReturnType<typeof getMetricApi010ExecutionsMetricsMetricIdGet>>>
-export type GetMetricApi010ExecutionsMetricsMetricIdGetQueryError = HTTPValidationError
+export type GetMetricQueryResult = NonNullable<Awaited<ReturnType<typeof getMetric>>>
+export type GetMetricQueryError = HTTPValidationError
 
 
-export function useGetMetricApi010ExecutionsMetricsMetricIdGet<TData = Awaited<ReturnType<typeof getMetricApi010ExecutionsMetricsMetricIdGet>>, TError = HTTPValidationError>(
- metricId: number, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMetricApi010ExecutionsMetricsMetricIdGet>>, TError, TData>> & Pick<
+export function useGetMetric<TData = Awaited<ReturnType<typeof getMetric>>, TError = HTTPValidationError>(
+ metricId: number, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMetric>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getMetricApi010ExecutionsMetricsMetricIdGet>>,
+          Awaited<ReturnType<typeof getMetric>>,
           TError,
-          Awaited<ReturnType<typeof getMetricApi010ExecutionsMetricsMetricIdGet>>
+          Awaited<ReturnType<typeof getMetric>>
         > , 'initialData'
       >, request?: SecondParameter<typeof api>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetMetricApi010ExecutionsMetricsMetricIdGet<TData = Awaited<ReturnType<typeof getMetricApi010ExecutionsMetricsMetricIdGet>>, TError = HTTPValidationError>(
- metricId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMetricApi010ExecutionsMetricsMetricIdGet>>, TError, TData>> & Pick<
+export function useGetMetric<TData = Awaited<ReturnType<typeof getMetric>>, TError = HTTPValidationError>(
+ metricId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMetric>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getMetricApi010ExecutionsMetricsMetricIdGet>>,
+          Awaited<ReturnType<typeof getMetric>>,
           TError,
-          Awaited<ReturnType<typeof getMetricApi010ExecutionsMetricsMetricIdGet>>
+          Awaited<ReturnType<typeof getMetric>>
         > , 'initialData'
       >, request?: SecondParameter<typeof api>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetMetricApi010ExecutionsMetricsMetricIdGet<TData = Awaited<ReturnType<typeof getMetricApi010ExecutionsMetricsMetricIdGet>>, TError = HTTPValidationError>(
- metricId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMetricApi010ExecutionsMetricsMetricIdGet>>, TError, TData>>, request?: SecondParameter<typeof api>}
+export function useGetMetric<TData = Awaited<ReturnType<typeof getMetric>>, TError = HTTPValidationError>(
+ metricId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMetric>>, TError, TData>>, request?: SecondParameter<typeof api>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
  * @summary Get Metric
  */
 
-export function useGetMetricApi010ExecutionsMetricsMetricIdGet<TData = Awaited<ReturnType<typeof getMetricApi010ExecutionsMetricsMetricIdGet>>, TError = HTTPValidationError>(
- metricId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMetricApi010ExecutionsMetricsMetricIdGet>>, TError, TData>>, request?: SecondParameter<typeof api>}
+export function useGetMetric<TData = Awaited<ReturnType<typeof getMetric>>, TError = HTTPValidationError>(
+ metricId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMetric>>, TError, TData>>, request?: SecondParameter<typeof api>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
-  const queryOptions = getGetMetricApi010ExecutionsMetricsMetricIdGetQueryOptions(metricId,options)
+  const queryOptions = getGetMetricQueryOptions(metricId,options)
 
   const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
@@ -1365,26 +1364,26 @@ export function useGetMetricApi010ExecutionsMetricsMetricIdGet<TData = Awaited<R
 
 
 
-export type listExecutionStepsApi010ExecutionsExecutionsExecutionIdStepsGetResponse200 = {
+export type listExecutionStepsResponse200 = {
   data: AutomationsHubDtoStepsStepResponse[]
   status: 200
 }
 
-export type listExecutionStepsApi010ExecutionsExecutionsExecutionIdStepsGetResponse422 = {
+export type listExecutionStepsResponse422 = {
   data: HTTPValidationError
   status: 422
 }
 
-export type listExecutionStepsApi010ExecutionsExecutionsExecutionIdStepsGetResponseSuccess = (listExecutionStepsApi010ExecutionsExecutionsExecutionIdStepsGetResponse200) & {
+export type listExecutionStepsResponseSuccess = (listExecutionStepsResponse200) & {
   headers: Headers;
 };
-export type listExecutionStepsApi010ExecutionsExecutionsExecutionIdStepsGetResponseError = (listExecutionStepsApi010ExecutionsExecutionsExecutionIdStepsGetResponse422) & {
+export type listExecutionStepsResponseError = (listExecutionStepsResponse422) & {
   headers: Headers;
 };
 
-export type listExecutionStepsApi010ExecutionsExecutionsExecutionIdStepsGetResponse = (listExecutionStepsApi010ExecutionsExecutionsExecutionIdStepsGetResponseSuccess | listExecutionStepsApi010ExecutionsExecutionsExecutionIdStepsGetResponseError)
+export type listExecutionStepsResponse = (listExecutionStepsResponseSuccess | listExecutionStepsResponseError)
 
-export const getListExecutionStepsApi010ExecutionsExecutionsExecutionIdStepsGetUrl = (executionId: number,) => {
+export const getListExecutionStepsUrl = (executionId: number,) => {
 
 
 
@@ -1396,9 +1395,9 @@ export const getListExecutionStepsApi010ExecutionsExecutionsExecutionIdStepsGetU
  * Lista os steps de uma execução.
  * @summary List Execution Steps
  */
-export const listExecutionStepsApi010ExecutionsExecutionsExecutionIdStepsGet = async (executionId: number, options?: Parameters<typeof api>[1]): Promise<listExecutionStepsApi010ExecutionsExecutionsExecutionIdStepsGetResponse> => {
+export const listExecutionSteps = async (executionId: number, options?: Parameters<typeof api>[1]): Promise<listExecutionStepsResponse> => {
 
-  return api<listExecutionStepsApi010ExecutionsExecutionsExecutionIdStepsGetResponse>(getListExecutionStepsApi010ExecutionsExecutionsExecutionIdStepsGetUrl(executionId),
+  return api<listExecutionStepsResponse>(getListExecutionStepsUrl(executionId),
   {
     ...options,
     method: 'GET'
@@ -1411,69 +1410,69 @@ export const listExecutionStepsApi010ExecutionsExecutionsExecutionIdStepsGet = a
 
 
 
-export const getListExecutionStepsApi010ExecutionsExecutionsExecutionIdStepsGetQueryKey = (executionId: number,) => {
+export const getListExecutionStepsQueryKey = (executionId: number,) => {
     return [
     `/api/0.1.0/executions/executions/${executionId}/steps`
     ] as const;
     }
 
 
-export const getListExecutionStepsApi010ExecutionsExecutionsExecutionIdStepsGetQueryOptions = <TData = Awaited<ReturnType<typeof listExecutionStepsApi010ExecutionsExecutionsExecutionIdStepsGet>>, TError = HTTPValidationError>(executionId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listExecutionStepsApi010ExecutionsExecutionsExecutionIdStepsGet>>, TError, TData>>, request?: SecondParameter<typeof api>}
+export const getListExecutionStepsQueryOptions = <TData = Awaited<ReturnType<typeof listExecutionSteps>>, TError = HTTPValidationError>(executionId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listExecutionSteps>>, TError, TData>>, request?: SecondParameter<typeof api>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getListExecutionStepsApi010ExecutionsExecutionsExecutionIdStepsGetQueryKey(executionId);
+  const queryKey =  queryOptions?.queryKey ?? getListExecutionStepsQueryKey(executionId);
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof listExecutionStepsApi010ExecutionsExecutionsExecutionIdStepsGet>>> = ({ signal }) => listExecutionStepsApi010ExecutionsExecutionsExecutionIdStepsGet(executionId, { signal, ...requestOptions });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof listExecutionSteps>>> = ({ signal }) => listExecutionSteps(executionId, { signal, ...requestOptions });
 
 
 
 
 
-   return  { queryKey, queryFn, enabled: executionId !== null && executionId !== undefined, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof listExecutionStepsApi010ExecutionsExecutionsExecutionIdStepsGet>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+   return  { queryKey, queryFn, enabled: executionId !== null && executionId !== undefined, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof listExecutionSteps>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
 }
 
-export type ListExecutionStepsApi010ExecutionsExecutionsExecutionIdStepsGetQueryResult = NonNullable<Awaited<ReturnType<typeof listExecutionStepsApi010ExecutionsExecutionsExecutionIdStepsGet>>>
-export type ListExecutionStepsApi010ExecutionsExecutionsExecutionIdStepsGetQueryError = HTTPValidationError
+export type ListExecutionStepsQueryResult = NonNullable<Awaited<ReturnType<typeof listExecutionSteps>>>
+export type ListExecutionStepsQueryError = HTTPValidationError
 
 
-export function useListExecutionStepsApi010ExecutionsExecutionsExecutionIdStepsGet<TData = Awaited<ReturnType<typeof listExecutionStepsApi010ExecutionsExecutionsExecutionIdStepsGet>>, TError = HTTPValidationError>(
- executionId: number, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof listExecutionStepsApi010ExecutionsExecutionsExecutionIdStepsGet>>, TError, TData>> & Pick<
+export function useListExecutionSteps<TData = Awaited<ReturnType<typeof listExecutionSteps>>, TError = HTTPValidationError>(
+ executionId: number, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof listExecutionSteps>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof listExecutionStepsApi010ExecutionsExecutionsExecutionIdStepsGet>>,
+          Awaited<ReturnType<typeof listExecutionSteps>>,
           TError,
-          Awaited<ReturnType<typeof listExecutionStepsApi010ExecutionsExecutionsExecutionIdStepsGet>>
+          Awaited<ReturnType<typeof listExecutionSteps>>
         > , 'initialData'
       >, request?: SecondParameter<typeof api>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useListExecutionStepsApi010ExecutionsExecutionsExecutionIdStepsGet<TData = Awaited<ReturnType<typeof listExecutionStepsApi010ExecutionsExecutionsExecutionIdStepsGet>>, TError = HTTPValidationError>(
- executionId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listExecutionStepsApi010ExecutionsExecutionsExecutionIdStepsGet>>, TError, TData>> & Pick<
+export function useListExecutionSteps<TData = Awaited<ReturnType<typeof listExecutionSteps>>, TError = HTTPValidationError>(
+ executionId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listExecutionSteps>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof listExecutionStepsApi010ExecutionsExecutionsExecutionIdStepsGet>>,
+          Awaited<ReturnType<typeof listExecutionSteps>>,
           TError,
-          Awaited<ReturnType<typeof listExecutionStepsApi010ExecutionsExecutionsExecutionIdStepsGet>>
+          Awaited<ReturnType<typeof listExecutionSteps>>
         > , 'initialData'
       >, request?: SecondParameter<typeof api>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useListExecutionStepsApi010ExecutionsExecutionsExecutionIdStepsGet<TData = Awaited<ReturnType<typeof listExecutionStepsApi010ExecutionsExecutionsExecutionIdStepsGet>>, TError = HTTPValidationError>(
- executionId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listExecutionStepsApi010ExecutionsExecutionsExecutionIdStepsGet>>, TError, TData>>, request?: SecondParameter<typeof api>}
+export function useListExecutionSteps<TData = Awaited<ReturnType<typeof listExecutionSteps>>, TError = HTTPValidationError>(
+ executionId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listExecutionSteps>>, TError, TData>>, request?: SecondParameter<typeof api>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
  * @summary List Execution Steps
  */
 
-export function useListExecutionStepsApi010ExecutionsExecutionsExecutionIdStepsGet<TData = Awaited<ReturnType<typeof listExecutionStepsApi010ExecutionsExecutionsExecutionIdStepsGet>>, TError = HTTPValidationError>(
- executionId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listExecutionStepsApi010ExecutionsExecutionsExecutionIdStepsGet>>, TError, TData>>, request?: SecondParameter<typeof api>}
+export function useListExecutionSteps<TData = Awaited<ReturnType<typeof listExecutionSteps>>, TError = HTTPValidationError>(
+ executionId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof listExecutionSteps>>, TError, TData>>, request?: SecondParameter<typeof api>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
-  const queryOptions = getListExecutionStepsApi010ExecutionsExecutionsExecutionIdStepsGetQueryOptions(executionId,options)
+  const queryOptions = getListExecutionStepsQueryOptions(executionId,options)
 
   const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 

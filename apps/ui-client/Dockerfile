@@ -12,6 +12,8 @@ FROM node:24-alpine AS build-env
 COPY . /app/
 COPY --from=development-dependencies-env /app/node_modules /app/node_modules
 WORKDIR /app
+ARG AUTOMATION_HUB
+ENV AUTOMATION_HUB=${AUTOMATION_HUB}
 RUN npm run build
 
 FROM node:24-alpine

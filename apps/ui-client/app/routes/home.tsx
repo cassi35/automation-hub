@@ -1,5 +1,5 @@
+import { useListAutomations } from "~/api/generated";
 import type { Route } from "./+types/home";
-import { Welcome } from "../welcome/welcome";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -9,5 +9,16 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
-  return <Welcome />;
+  const { data, isLoading, isError } = useListAutomations();
+
+  if (isLoading) return <p>Carregando...</p>;
+  if (isError) return <p>Erro ao carregar automações.</p>;
+  console.log(data?.data);
+  return (
+    <div>
+      {data?.data.map((automation) => (
+        <div key={automation.id}>slug: {automation.slug}</div>
+      ))}
+    </div>
+  );
 }

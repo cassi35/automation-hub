@@ -5,6 +5,8 @@ services:
       dockerfile: apps/automations-hub/Dockerfile
     ports:
       - "8000:8000"
+    env_file:
+      - .env.production
     volumes:
       - ./apps/automations-hub:/app/apps/automations-hub
       - ./packages/shared:/app/packages/shared
@@ -18,8 +20,8 @@ services:
         AUTOMATION_HUB: ${AUTOMATION_HUB}
     ports:
       - "5173:3000"
-    environment:
-      - HOST=0.0.0.0
+    env_file:
+      - .env.production
     depends_on:
       - automations-hub
     restart: unless-stopped

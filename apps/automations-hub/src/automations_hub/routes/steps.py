@@ -12,6 +12,7 @@ step_service = StepService()
     "/executions/{execution_id}/steps",
     response_model=list[StepResponse],
     status_code=status.HTTP_200_OK,
+    operation_id="list_execution_steps",
 )
 async def list_execution_steps(
     execution_id: int,

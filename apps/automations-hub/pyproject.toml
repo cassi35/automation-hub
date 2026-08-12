@@ -17,10 +17,12 @@ dependencies = [
     "python-dotenv>=1.2.2",
     "sqlalchemy>=2.0.51",
     "uvicorn>=0.51.0",
-    "shared"
+    "shared",
+    "english-news",
 ]
 [tool.uv.sources]
 shared = { workspace = true }
+english-news = { workspace = true }
 [project.scripts]
 automations-hub = "automations_hub:main"
 
