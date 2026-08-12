@@ -9,5 +9,5 @@ export default defineConfig({
     tsconfigPaths: true,
   },
   envDir: path.resolve(__dirname, "../../"),
-  envPrefix: ["AUTOMATION_HUB"],
+  envPrefix: ["VITE_", "AUTOMATION_HUB"],
 });

@@ -42,3 +42,6 @@ isso tudo na root
 4. uv sync 
  uv run pytest -s ./test/connection_test.py
  rm -rf packages/__pycache_
+ docker compose -f docker-compose.prod.yml up -d --build
+  docker compose -f docker-compose.prod.yml config
+  docker stop $(docker ps -q)

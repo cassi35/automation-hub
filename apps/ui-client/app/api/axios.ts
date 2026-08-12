@@ -15,7 +15,7 @@ export const api = async <T>(
   url: string,
   config?: AxiosRequestConfig,
 ): Promise<T> => {
-  console.log(import.meta.env.AUTOMATION_HUB);
+  // console.log(`import da ui aqui: ${import.meta.env.AUTOMATION_HUB}`);
   const instance = axios.create({
     baseURL: import.meta.env.AUTOMATION_HUB,
     withCredentials: true,
