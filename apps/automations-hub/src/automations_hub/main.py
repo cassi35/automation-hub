@@ -8,7 +8,7 @@ from rich import print
 from automations_hub.sync_registry import sync_all_manifests
 from automations_hub.infra.automation_repository import AutomationRepository
 from fastapi.middleware.cors import CORSMiddleware
-
+from shared.config.config import Config
 from automations_hub.routes.automation_route import automation_router
 from automations_hub.routes.execution_route import execution_router
 from automations_hub.routes.metrics import metric_router
@@ -20,6 +20,7 @@ async def lifespan(app: FastAPI):
     sync_all_manifests()
     # registar erros 
     register_error_handlers(app)
+    print(f'[green]{Config.REACT_URL}[/green]')
     print()
     print('[blue]=========== application started SUCCESSFULLY =========== [/blue]')
     yield
@@ -40,10 +41,7 @@ app = FastAPI(
 # middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",
-        "http://localhost:5174",
-    ],
+    allow_origins=Config.REACT_URL,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

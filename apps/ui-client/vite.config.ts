@@ -1,5 +1,6 @@
 import { reactRouter } from "@react-router/dev/vite";
 import tailwindcss from "@tailwindcss/vite";
+import path from "path";
 import { defineConfig } from "vite";
 
 export default defineConfig({
@@ -7,4 +8,6 @@ export default defineConfig({
   resolve: {
     tsconfigPaths: true,
   },
+  envDir: path.resolve(__dirname, "../../"),
+  envPrefix: ["AUTOMATION_HUB"],
 });

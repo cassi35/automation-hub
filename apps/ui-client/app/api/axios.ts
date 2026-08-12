@@ -9,20 +9,23 @@
 
 //   const response = await instance(config);
 //   return response.data;
-// };
 import axios from "axios";
 import type { AxiosRequestConfig } from "axios";
-
 export const api = async <T>(
   url: string,
   config?: AxiosRequestConfig,
 ): Promise<T> => {
+  console.log(import.meta.env.AUTOMATION_HUB);
   const instance = axios.create({
-    baseURL: "http://0.0.0.0:8000/",
+    baseURL: import.meta.env.AUTOMATION_HUB,
     withCredentials: true,
   });
 
-  const response = await instance<T>(url, config);
+  const response = await instance(url, config);
 
-  return response.data;
+  return {
+    data: response.data,
+    status: response.status,
+    headers: new Headers(response.headers as HeadersInit),
+  } as T;
 };
