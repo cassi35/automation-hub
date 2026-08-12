@@ -9,6 +9,12 @@ jobs:
     name: Unit Tests
     runs-on: ubuntu-latest
 
+    env:
+      JIRA_TKOEN: ${{ secrets.JIRA_TKOEN }}
+      MICROSOFT_GRAPH: ${{ secrets.MICROSOFT_GRAPH }}
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      REACT_URL: ${{ secrets.REACT_URL }}
+
     steps:
       - name: Checkout código
         uses: actions/checkout@v4
@@ -23,10 +29,12 @@ jobs:
 
       - name: Instalar dependências
         run: uv sync --all-packages
+
       - name: Listar arquivos de teste
         run: |
           pwd
           find . -name "*test*.py"
+
       - name: Rodar testes unitários
         run: uv run pytest -m unit -v
 
@@ -34,6 +42,12 @@ jobs:
     name: Integration Tests
     runs-on: ubuntu-latest
 
+    env:
+      JIRA_TKOEN: ${{ secrets.JIRA_TKOEN }}
+      MICROSOFT_GRAPH: ${{ secrets.MICROSOFT_GRAPH }}
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      REACT_URL: ${{ secrets.REACT_URL }}
+
     steps:
       - name: Checkout código
         uses: actions/checkout@v4
@@ -48,16 +62,25 @@ jobs:
 
       - name: Instalar dependências
         run: uv sync --all-packages
+
       - name: Listar arquivos de teste
         run: |
           pwd
           find . -name "*test*.py"
+
       - name: Rodar testes de integração
         run: uv run pytest -m integration -v
+
   performance:
     name: performance Tests
     runs-on: ubuntu-latest
 
+    env:
+      JIRA_TKOEN: ${{ secrets.JIRA_TKOEN }}
+      MICROSOFT_GRAPH: ${{ secrets.MICROSOFT_GRAPH }}
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      REACT_URL: ${{ secrets.REACT_URL }}
+
     steps:
       - name: Checkout código
         uses: actions/checkout@v4
@@ -72,17 +95,26 @@ jobs:
 
       - name: Instalar dependências
         run: uv sync --all-packages
+
       - name: Listar arquivos de teste
         run: |
           pwd
           find . -name "*test*.py"
+
       - name: Rodar testes de performance
         run: uv run pytest -s -m performance -v
+
   deploy-db:
     name: Deploy Database Migrations
     runs-on: ubuntu-latest
     needs: [unit, integration, performance]
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+
+    env:
+      JIRA_TKOEN: ${{ secrets.JIRA_TKOEN }}
+      MICROSOFT_GRAPH: ${{ secrets.MICROSOFT_GRAPH }}
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      REACT_URL: ${{ secrets.REACT_URL }}
 
     steps:
       - name: Checkout código
@@ -100,11 +132,6 @@ jobs:
         run: uv sync --all-packages
 
       - name: Rodar migrations no banco de produção
-        env:
-          JIRA_TKOEN: ${{ secrets.JIRA_TKOEN }}
-          MICROSOFT_GRAPH: ${{ secrets.MICROSOFT_GRAPH }}
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          REACT_URL: ${{ secrets.REACT_URL }}
         run: |
           cd apps/automations-hub
           uv run alembic upgrade head
