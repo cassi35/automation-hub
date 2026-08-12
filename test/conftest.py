@@ -5,7 +5,6 @@ from sqlalchemy.engine import Engine
 from testcontainers.community.postgres import PostgresContainer
 from shared.config.config import Config
 import os
-from automations_hub.infra.db import get_database
 import subprocess
 from pathlib import Path
 
