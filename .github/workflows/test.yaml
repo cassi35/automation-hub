@@ -101,7 +101,10 @@ jobs:
 
       - name: Rodar migrations no banco de produção
         env:
+          JIRA_TKOEN: ${{ secrets.JIRA_TKOEN }}
+          MICROSOFT_GRAPH: ${{ secrets.MICROSOFT_GRAPH }}
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          REACT_URL: ${{ secrets.REACT_URL }}
         run: |
           cd apps/automations-hub
           uv run alembic upgrade head
