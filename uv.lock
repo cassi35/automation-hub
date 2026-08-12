@@ -161,6 +161,7 @@ source = { editable = "apps/automations-hub" }
 dependencies = [
     { name = "alembic" },
     { name = "asyncpg" },
+    { name = "english-news" },
     { name = "fastapi" },
     { name = "feedparser" },
     { name = "prompt-toolkit" },
@@ -182,6 +183,7 @@ dev = [
 requires-dist = [
     { name = "alembic", specifier = ">=1.18.5" },
     { name = "asyncpg", specifier = ">=0.31.0" },
+    { name = "english-news", editable = "packages/english_news" },
     { name = "fastapi", specifier = ">=0.139.2" },
     { name = "feedparser", specifier = ">=6.0.12" },
     { name = "prompt-toolkit", specifier = ">=3.0.52" },
