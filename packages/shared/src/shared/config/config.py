@@ -17,6 +17,11 @@ class Settings(BaseSettings):
     DATABASE_URL:  str | None = Field(min_length=1)
     REACT_URL: str = Field(min_length=1)
     AUTOMATION_HUB:  str | None = None
+    GROQ_API:str = Field(min_length=1)
+    GOOGLE_STDIO_API:str = Field(min_length=1)
+    LLM_MODEL:str = Field(min_length=1)
+    LLM_MODEL_GROQ:str = Field(min_length=1)
+    LLM_MODEL_GOOGLE:str = Field(min_length=1)
     model_config = SettingsConfigDict(
         env_file=ROOT_DIR / ".env",
         env_file_encoding="utf-8",

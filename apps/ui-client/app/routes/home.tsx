@@ -12,8 +12,8 @@ export default function Home() {
   const { data, isLoading, isError } = useListAutomations();
 
   if (isLoading) return <p>Carregando...</p>;
-  if (isError) return <p>Erro ao carregar automações.</p>;
   console.log(data?.data);
+  if (isError) return <p>Erro ao carregar automações.</p>;
   return (
     <div>
       {data?.data.map((automation) => (
