@@ -46,8 +46,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <Navbar />
-      <Outlet />
+      <div className="min-h-screen bg-[#0b0f14]">
+        <Navbar />
+        <main className="ml-56 min-h-screen p-6">
+          <Outlet />
+        </main>
+      </div>
     </QueryClientProvider>
   );
 }
