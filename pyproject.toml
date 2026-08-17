@@ -25,6 +25,7 @@ members = [
     "packages/shared",
     "packages/english_news",
     "apps/*",
+    "automation_agent",
 ]
 exclude = ["apps/node_modules", "apps/ui-client","packages/*/__pycache__"]
 [dependency-groups]

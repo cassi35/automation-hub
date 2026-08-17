@@ -10,6 +10,7 @@ import {
 import type { Route } from "./+types/root";
 import "./app.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Navbar from "./components/Navbar";
 const queryClient = new QueryClient();
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -45,7 +46,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <Outlet />
+      <div className="min-h-screen bg-[#0b0f14]">
+        <Navbar />
+        <main className="ml-56 min-h-screen p-6">
+          <Outlet />
+        </main>
+      </div>
     </QueryClientProvider>
   );
 }
