@@ -1,5 +1,7 @@
 from datetime import datetime, timezone
 import sys
+import json
+from sqlalchemy import text
 from shared.db.settings.connection import BDConnectionHandler
 from sqlalchemy import update
 from shared.db.entities.automation import AutomationModel,ExecutionModel,MetricModel,StepModel
@@ -50,6 +52,11 @@ class OrchestratorClient:
         )
             self._db.session.add(execution)
             self._db.session.flush()
+            self._notify({
+                "type": "execution.started",
+                "execution_id": execution.id,
+                "status": "process",
+            })
             self._db.session.commit()
             return execution.id
         except Exception:
@@ -61,14 +68,33 @@ class OrchestratorClient:
         step = StepModel(execution_id=execution_id, name=name, status="running")
         db.session.add(step)
         db.session.flush()
+        self._notify({
+            "type": "step.started",
+            "execution_id": execution_id,
+            "step_id": step.id,
+            "step_name": name,
+            "status": "running",
+        })
         db.session.commit()
         return step.id
 
     def finish_step(self, step_id: int) -> None:
         db = self._require_db()
+        step = db.session.get(StepModel, step_id)
+        if step is None:
+            raise ValueError(
+                f"Step {step_id} não encontrado"
+            )
         db.session.execute(
             update(StepModel).where(StepModel.id == step_id).values(status="stopped")
         )
+        self._notify({
+            "type": "step.finished",
+            "execution_id": step.execution_id,
+            "step_id": step.id,
+            "step_name": step.name,
+            "status": "stopped",
+        })
         db.session.commit()
 
     def fail_step(self, step_id: int, error: str) -> None:
@@ -87,6 +113,11 @@ class OrchestratorClient:
             .where(ExecutionModel.id == execution_id)
             .values(status="success", end_at=datetime.now(timezone.utc))
         )
+        self._notify({
+            "type": "execution.finished",
+            "execution_id": execution_id,
+            "status": "success",
+        })
         db.session.commit()
         self._handler.__exit__(None, None, None)
         self._db = None
@@ -102,3 +133,17 @@ class OrchestratorClient:
         db.session.commit()
         self._handler.__exit__(None, None, None)
         self._db = None
+    def _notify(self, message: dict) -> None:
+            db = self._require_db()
+
+            db.session.execute(
+                text(
+                    "SELECT pg_notify("
+                    "'execution_events', "
+                    ":payload"
+                    ")"
+                ),
+                {
+                    "payload": json.dumps(message)
+                },
+            )
