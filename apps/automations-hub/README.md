@@ -58,3 +58,32 @@ pra uma automação rodar via systemd timer, só o banco precisa estar acessíve
 
 - sudo lsof -i :8000 --> matar o processo
 - sudo kill -9 <pid>
+
+# WEBSOCKETS
+
+## Real-Time Execution Monitoring
+
+The `automation-hub` provides real-time execution updates through WebSockets.
+
+Automations run independently and do not communicate directly with the frontend. Execution and step state changes are persisted through the `OrchestratorClient`, which publishes PostgreSQL `NOTIFY` events after database transactions are committed.
+
+The `automation-hub` listens for these events and broadcasts them to connected WebSocket clients through a `ConnectionManager`.
+
+```text
+Automation
+    │
+    │ OrchestratorClient
+    ▼
+PostgreSQL
+    │
+    │ LISTEN / NOTIFY
+    ▼
+automation-hub
+    │
+    │ ConnectionManager.broadcast()
+    ▼
+WebSocket
+    │
+    ▼
+React
+```

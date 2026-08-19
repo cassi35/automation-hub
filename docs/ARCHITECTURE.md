@@ -68,3 +68,9 @@ Fluxo:
 Método:
   record_metric()
 ```
+
+# objetivo
+
+Queue + thread: tirar o PostgreSQL do caminho crítico da automação.
+RabbitMQ: fazer essa fila ser externa/persistente e permitir comunicação entre processos/máquinas.
+WebSocket: manter o React atualizado em tempo real.
