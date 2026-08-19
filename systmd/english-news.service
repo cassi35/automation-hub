@@ -1,0 +1,12 @@
+[Unit]
+Description=English News Automation
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/cassiano/projetosGithub/organize_tasks
+ExecStart=/home/cassiano/.local/bin/uv run english-news
+
+[Install]
+WantedBy=default.target
