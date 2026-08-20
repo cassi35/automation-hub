@@ -61,3 +61,10 @@ docker compose \
   -f docker-compose.prod.yml \
   up -d
   ```
+  -------------------------------------
+  scripts do systmd 
+systemctl --user status english-news.timer ==> ver o status timer 
+systemctl --user status english-news.service ===> ver status do service 
+systemctl --user list-timers --all ==> listar todos os timers 
+systemctl --user start english-news.service ==> forcar manualmente 
+systemctl --user daemon-reload ==> reload 

@@ -7,7 +7,9 @@ from shared.config.config import Config
 import os
 import subprocess
 from pathlib import Path
-
+import uvicorn
+import threading
+from automations_hub.main import app
 def find_root(marker: str = ".git") -> Path:
     path = Path(__file__).resolve()
     for parent in path.parents:
@@ -70,4 +72,5 @@ pytest_plugins = [
     "test.fixtures.fixture_models",
     "test.fixtures.repositories_fixtures",
     "test.fixtures.contants_fixture",
+    "test.fixtures.server_fixture",
 ]

@@ -22,6 +22,7 @@ class Settings(BaseSettings):
     LLM_MODEL:str = Field(min_length=1)
     LLM_MODEL_GROQ:str = Field(min_length=1)
     LLM_MODEL_GOOGLE:str = Field(min_length=1)
+    DATABASE_LISTENER_URL:str = Field(min_length=1)
     model_config = SettingsConfigDict(
         env_file=ROOT_DIR / ".env",
         env_file_encoding="utf-8",

@@ -1,0 +1,9 @@
+[Unit]
+Description=English News Timer
+
+[Timer]
+OnCalendar=*-*-* 10:14:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target

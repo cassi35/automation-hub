@@ -1,3 +1,4 @@
+import asyncio
 from contextlib import asynccontextmanager
 from automations_hub.erros.exeptions import InvalidAutomationSlug
 from automations_hub.erros.handlers import register_error_handlers
@@ -5,6 +6,9 @@ from automations_hub.infra.db import get_database
 from fastapi import FastAPI
 import uvicorn
 from rich import print
+from automations_hub.services.execution_listener import (
+    ExecutionEventListener,
+)
 from automations_hub.sync_registry import sync_all_manifests
 from automations_hub.infra.automation_repository import AutomationRepository
 from fastapi.middleware.cors import CORSMiddleware
@@ -13,6 +17,7 @@ from automations_hub.routes.automation_route import automation_router
 from automations_hub.routes.execution_route import execution_router
 from automations_hub.routes.metrics import metric_router
 from automations_hub.routes.steps import step_router
+from automations_hub.routes.websocket_route import websocket_router
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     print("[green]Starting up...[/green]")
@@ -20,6 +25,18 @@ async def lifespan(app: FastAPI):
     sync_all_manifests()
     # registar erros 
     register_error_handlers(app)
+    loop = asyncio.get_running_loop()
+
+    listener = ExecutionEventListener(
+        database_url=Config.DATABASE_LISTENER_URL,
+        loop=loop,
+    )
+    # print(
+    #     "LISTENER DATABASE:",
+    #     database._connection_string,
+    # )
+    listener.start()
+
     print(f'[green]{Config.REACT_URL}[/green]')
     print()
     print('[blue]=========== application started SUCCESSFULLY =========== [/blue]')
@@ -51,7 +68,7 @@ app.include_router(automation_router, prefix=f"/api/{version}/automations", tags
 app.include_router(execution_router, prefix=f"/api/{version}/executions", tags=["executions"])
 app.include_router(metric_router, prefix=f"/api/{version}/executions", tags=["metrics"])
 app.include_router(step_router, prefix=f"/api/{version}/executions", tags=["steps"])
-
+app.include_router(websocket_router, prefix=f"/api/{version}", tags=["websocket"])
 # rotas princapis teste
 @app.get("/")
 async def root() -> dict:
@@ -64,7 +81,6 @@ async def health() -> dict:
 @app.get("/test-error")
 async def test_error() :
     raise InvalidAutomationSlug("test-error")
-
 def main() -> None:
     print(f"Hello from automations-hub!")
     uvicorn.run(

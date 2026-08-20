@@ -1,0 +1,22 @@
+eu tenho contato com  ambiente python a mais de 3 anos .
+ o projeto que mais me desafiou foi um projeto de orquestrar
+  e monitorar fluxos de trabalho e pipelines de dados tanto 
+  locais do linux e na nuvem com gatilho no github actions 
+  ,para monitorar a qualidade das automações , isso em ambiente 
+  docker local e um agente de llm em grafo local que pega esboço 
+  de docs do repositório no jira e cria a testes e aprimora 
+  a README.md com racicinio próprio , meu desafio nele foi montar 
+  a arquitetura , para inserção de registros das execuções 
+  nele passa um banco de dados na nuvem mas como são varias
+   simultaneamente tem problema de latência resolvi ele 
+   abrindo um processo em paralelo "THREAD" so para passos 
+   bem sucedidos armazenando em fila . Assim reduzindo o tempo 
+   de alocação de recurso na memória ram fazendo com que as automações 
+   ficarem muito mais rápidas . O processo foi legal de fazer porque 
+   eu mantive a qualdiade automatizando testes em pipeline github
+    actions, benckmark , unit, performance etc . e na parte da criação 
+    fui também um orquestrador do codex (chatgpt) e agy (google) delegando 
+    tarefas para subagent realizar em paralelo para reduzir tempo de entrega
+     dele, alem da criacao de um mcp server aonde o agente
+      consegue consultar execuções automações mal sucessididas para
+       refatorar o projeto
