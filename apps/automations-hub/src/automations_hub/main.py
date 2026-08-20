@@ -21,20 +21,20 @@ from automations_hub.routes.websocket_route import websocket_router
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     print("[green]Starting up...[/green]")
-    database = get_database()
+    get_database()
     sync_all_manifests()
     # registar erros 
     register_error_handlers(app)
     loop = asyncio.get_running_loop()
 
     listener = ExecutionEventListener(
-        database_url=database._connection_string,
+        database_url=Config.DATABASE_LISTENER_URL,
         loop=loop,
     )
-    print(
-        "LISTENER DATABASE:",
-        database._connection_string,
-    )
+    # print(
+    #     "LISTENER DATABASE:",
+    #     database._connection_string,
+    # )
     listener.start()
 
     print(f'[green]{Config.REACT_URL}[/green]')

@@ -2,6 +2,7 @@ import asyncio
 import json
 import select
 import threading
+import time
 
 import psycopg2
 
@@ -34,60 +35,72 @@ class ExecutionEventListener:
             self._thread.join(timeout=2)
 
     def _listen(self):
-        try:
-            connection = psycopg2.connect(
-                self.database_url.replace(
-                    "postgresql+psycopg2://",
-                    "postgresql://",
-                    1,
-                )
-            )
+        while not self._stop_event.is_set():
+            connection = None
 
-            connection.set_isolation_level(
-                psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT
-            )
-
-            cursor = connection.cursor()
-
-            cursor.execute("LISTEN execution_events;")
-
-            print("LISTEN execution_events conectado")
-
-            while not self._stop_event.is_set():
-
-                readable, _, _ = select.select(
-                    [connection],
-                    [],
-                    [],
-                    1,
+            try:
+                connection = psycopg2.connect(
+                    self.database_url
                 )
 
-                if not readable:
-                    continue
+                connection.set_isolation_level(
+                    psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT
+                )
 
-                connection.poll()
+                cursor = connection.cursor()
 
-                while connection.notifies:
-                    notification = connection.notifies.pop(0)
+                cursor.execute(
+                    "LISTEN execution_events;"
+                )
 
+                print(
+                    "LISTEN execution_events conectado"
+                )
+
+                while not self._stop_event.is_set():
+
+                    readable, _, _ = select.select(
+                        [connection],
+                        [],
+                        [],
+                        1,
+                    )
+
+                    if not readable:
+                        continue
+
+                    connection.poll()
+
+                    while connection.notifies:
+                        notification = (
+                            connection.notifies.pop(0)
+                        )
+
+                        print(
+                            "NOTIFY RECEBIDO:",
+                            notification.payload,
+                        )
+
+                        message = json.loads(
+                            notification.payload
+                        )
+
+                        asyncio.run_coroutine_threadsafe(
+                            manager.broadcast(message),
+                            self.loop,
+                        )
+
+            except Exception as e:
+                if not self._stop_event.is_set():
                     print(
-                        "NOTIFY RECEBIDO:",
-                        notification.payload,
+                        f"Execution listener disconnected: {e}"
                     )
 
-                    message = json.loads(
-                        notification.payload
-                    )
+                    time.sleep(2)
 
-                    asyncio.run_coroutine_threadsafe(
-                        manager.broadcast(message),
-                        self.loop,
-                    )
-
-            cursor.close()
-            connection.close()
-
-        except Exception as e:
-            print(
-                f"ERRO NO EXECUTION LISTENER: {e}"
-            )
+            finally:
+                if connection is not None:
+                    try:
+                        connection.close()
+                    except Exception:
+                        pass
